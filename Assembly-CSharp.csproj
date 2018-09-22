@@ -61,6 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -112,15 +119,27 @@
     <Compile Include="Assets\Scripts\4D\LineGroup.cs" />
     <Compile Include="Assets\Scripts\4D\Rotating.cs" />
     <Compile Include="Assets\Scripts\4D\Rotation4D.cs" />
-    <Compile Include="Assets\Scripts\4D\SinSquare.cs" />
-    <Compile Include="Assets\Scripts\4D\SinSquareController.cs" />
-    <Compile Include="Assets\Scripts\4D\SpinningTriangle.cs" />
-    <Compile Include="Assets\Scripts\4D\TwistPyramid.cs" />
-    <Compile Include="Assets\Scripts\4D\TwistPyramidController.cs" />
-    <Compile Include="Assets\Scripts\GameEffect.cs" />
-    <Compile Include="Assets\Scripts\Matrix.cs" />
-    <Compile Include="Assets\Scripts\Matrix4x4Extension.cs" />
-    <Compile Include="Assets\Scripts\Vector234Extensions.cs" />
+    <Compile Include="Assets\Scripts\Animation\Neural Network\Connection.cs" />
+    <Compile Include="Assets\Scripts\Animation\Neural Network\LayerNeuron.cs" />
+    <Compile Include="Assets\Scripts\Animation\Neural Network\NeuralNetworkAnim.cs" />
+    <Compile Include="Assets\Scripts\Animation\Neural Network\Neuron.cs" />
+    <Compile Include="Assets\Scripts\Animation\SinSquare.cs" />
+    <Compile Include="Assets\Scripts\Animation\SinSquareController.cs" />
+    <Compile Include="Assets\Scripts\Animation\SpinningTriangle.cs" />
+    <Compile Include="Assets\Scripts\Animation\TwistPyramid.cs" />
+    <Compile Include="Assets\Scripts\Animation\TwistPyramidController.cs" />
+    <Compile Include="Assets\Scripts\Flock\Boids.cs" />
+    <Compile Include="Assets\Scripts\Flock\Flock.cs" />
+    <Compile Include="Assets\Scripts\Graphs\ChipsGraph.cs" />
+    <Compile Include="Assets\Scripts\Graphs\Graph.cs" />
+    <Compile Include="Assets\Scripts\Graphs\Gridrenderer.cs" />
+    <Compile Include="Assets\Scripts\Graphs\RippleGraph.cs" />
+    <Compile Include="Assets\Scripts\Graphs\WaveGraph.cs" />
+    <Compile Include="Assets\Scripts\Util\GameEffect.cs" />
+    <Compile Include="Assets\Scripts\Util\Matrix.cs" />
+    <Compile Include="Assets\Scripts\Util\Matrix4x4Extension.cs" />
+    <Compile Include="Assets\Scripts\Util\MatrixVerticesGenerator.cs" />
+    <Compile Include="Assets\Scripts\Util\Vector234Extensions.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
@@ -148,6 +167,7 @@
     <None Include="Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.shader" />
+    <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
@@ -163,6 +183,12 @@
     <None Include="Assets\UETools\FX_Alpha_Textures\Readme.txt" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -171,15 +197,6 @@
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
       <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
@@ -195,6 +212,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Editor">
       <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.IncludePaths">
       <HintPath>D:/User/Desktop/Projects/Geometry stuff/Library/ScriptAssemblies/Unity.RenderPipelines.Core.IncludePaths.dll</HintPath>
@@ -396,6 +416,9 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files (x86)/Unity 2018.2.5f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>D:/User/Desktop/Projects/Geometry stuff/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/DOMINIONXVII/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

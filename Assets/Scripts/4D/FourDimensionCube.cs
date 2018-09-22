@@ -46,6 +46,6 @@ public class FourDimensionCube : Rotation4D
 
     protected override void Calculate()
     {
-        verticesMatrixPosition = MatrixVerticeGenerator.GenerateCubeVertices(dimension);
+        verticesMatrixPosition = MatrixVerticesGenerator.GenerateCubeVertices(dimension);
     }    
 }
