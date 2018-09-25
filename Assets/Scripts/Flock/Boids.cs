@@ -30,7 +30,9 @@ public class Boids : MonoBehaviour {
 
     private void Start()
     {
+        //direction = Random.onUnitSphere.normalized;
         direction = Random.insideUnitCircle.normalized;
+
     }
 
     void Update ()
