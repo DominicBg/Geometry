@@ -7,12 +7,12 @@ public abstract class Rotation4D : MonoBehaviour
     [SerializeField] protected float scaleByW;
     [SerializeField] protected float size;
     [SerializeField] protected float rotationSpeed = 1;
-                                        
+
     [SerializeField] AnimationCurve angleCurve;
     [SerializeField] Matrix4DRotation rotationMatrix;
 
     protected Matrix verticesMatrixPosition;
-    protected Vector3[] verticesPositionsAfterRotation;
+    public Vector3[] verticesPositionsAfterRotation { get; protected set; }
 
     [SerializeField] bool animateOverTime;
 

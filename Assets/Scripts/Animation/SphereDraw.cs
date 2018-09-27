@@ -11,7 +11,7 @@ public class SphereDraw : MonoBehaviour {
     [SerializeField] Transform drawer;
     [SerializeField] float thetaSpeed;
     [SerializeField] float phiSpeed;
-
+    [SerializeField] float offset;
     float radius;
     float phi, theta;
     float TWOPI = Mathf.PI * 2;
@@ -24,7 +24,7 @@ public class SphereDraw : MonoBehaviour {
 	void Update ()
     {
         CalculatePosition();
-        float t = (Mathf.Sin(Time.time * sinRadiusFrequency) + 1) * 0.5f;
+        float t = (Mathf.Sin(offset + Time.time * sinRadiusFrequency) + 1) * 0.5f;
         radius = Mathf.Lerp(minRadius, maxRadius, t);
     }
 
