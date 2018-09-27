@@ -101,6 +101,17 @@ public class Matrix
         return new UnityEngine.Vector3((float)mat[row, 0], (float)mat[row, 1], (float)mat[row, 2]);     
     }
 
+    public float[] GetRow(int row)
+    {
+        float[] rowValues = new float[cols];
+        for (int i = 0; i < cols; i++)
+        {
+            rowValues[i] = (float)mat[row, i];
+        }
+        return rowValues;
+    }
+
+
     public Matrix GetCol(int k)
     {
         Matrix m = new Matrix(rows, 1);
@@ -113,6 +124,13 @@ public class Matrix
         for (int i = 0; i < rows; i++) mat[i, k] = v[i, 0];
     }
 
+    public void SetRow(int row, float[] values)
+    {
+        for (int i = 0; i < cols; i++)
+        {
+            mat[row, i] = values[i];
+        }
+    }
     public void MakeLU()                        // Function for LU decomposition
     {
         if (!IsSquare()) throw new MException("The matrix is not square!");

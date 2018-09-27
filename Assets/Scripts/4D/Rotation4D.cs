@@ -7,12 +7,12 @@ public abstract class Rotation4D : MonoBehaviour
     [SerializeField] protected float scaleByW;
     [SerializeField] protected float size;
     [SerializeField] protected float rotationSpeed = 1;
-                                        
+
     [SerializeField] AnimationCurve angleCurve;
     [SerializeField] Matrix4DRotation rotationMatrix;
 
     protected Matrix verticesMatrixPosition;
-    protected Vector3[] verticesPositionsAfterRotation;
+    public Vector3[] verticesPositionsAfterRotation { get; protected set; }
 
     [SerializeField] bool animateOverTime;
 
@@ -47,23 +47,21 @@ public abstract class Rotation4D : MonoBehaviour
     {
         Matrix matrixNewPosition = verticesMatrixPosition;
         if (rotationMatrix.rotateXY)
-            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationXY(angle));
+            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationXY(angle * rotationMatrix.speedXY));
         if (rotationMatrix.rotateXZ)
-            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationXZ(angle));
+            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationXZ(angle * rotationMatrix.speedXZ));
         if (rotationMatrix.rotateXW)
-            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationXW(angle));
+            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationXW(angle * rotationMatrix.speedXW));
 
         if (rotationMatrix.rotateYZ)
-            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationYZ(angle));
+            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationYZ(angle * rotationMatrix.speedYZ));
         if (rotationMatrix.rotateYW)
-            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationYW(angle));
+            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationYW(angle * rotationMatrix.speedYW));
 
         if (rotationMatrix.rotateZW)
-            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationZW(angle));
+            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RotationZW(angle * rotationMatrix.speedZW));
 
-        if (rotationMatrix.randomXDLOL)
-            matrixNewPosition = Matrix.StupidMultiply(matrixNewPosition, Matrix4DRotation.RandomXd(angle));
-
+       
         return matrixNewPosition;
     }
 
@@ -97,7 +95,13 @@ public class Matrix4DRotation
     public bool rotateYZ;
     public bool rotateYW;
     public bool rotateZW;
-    public bool randomXDLOL;
+
+    public float speedXY = 1;
+    public float speedXZ = 1;
+    public float speedXW = 1;
+    public float speedYZ = 1;
+    public float speedYW = 1;
+    public float speedZW = 1;
 
     public static Matrix RandomXd(float angle)
     {
