@@ -23,7 +23,7 @@ public class RootsController : MonoBehaviour {
         {
             float ratio = ((float)i / roots.Length);
             roots[i].SetOffset(ratio * 360);
-            TrailRenderer tr = roots[i].GetComponent<TrailRenderer>();
+            LineRenderer tr = roots[i].GetComponent<LineRenderer>();
 
             tr.startColor = color1.Evaluate(ratio);
             tr.endColor = color2.Evaluate(ratio);
