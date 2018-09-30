@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NDCube : MonoBehaviour {
 
     public List<VectorN> vertices { get; protected set; }
     public List<LineGroup> lineGroups { get; set; }
+    public UnityEvent onFullRotation = new UnityEvent();
+    public Gradient gradientOverDimensions;
 
     public int dimension;
     public float size = 10;
@@ -15,17 +19,25 @@ public class NDCube : MonoBehaviour {
     Matrix verticesMatrix;
     Vector3[] rotatedVertices;
 
+    [SerializeField] NDimensionReader dimensionReader;
+    [SerializeField] float speed;
     [SerializeField] LineGroup lineGroupPrefab;
+    public Vector2Int[] listRotationDimension; 
 
     float angle = 0;
+    float TWOPI = Mathf.PI * 2;
+    int minDimension = 2;
+
+    void Start()
+    {
+//        StartGeneration();
+    }
 
     [ContextMenu("Generate N Cube")]
     private void StartGeneration()
     {
         root = this;
         GenerateNCube(root);
-
-
         CalculateVerticesMatrix();
     }
 
@@ -43,29 +55,36 @@ public class NDCube : MonoBehaviour {
         if (verticesMatrix == null)
             return;
 
-        angle += Time.deltaTime;
-        //x = 0, y = 1, z = 2, w = 3.. etc
-        Matrix rotation_3_4 = MatrixRotationND.Rotation(angle, dimension, 3, 4);
-        Matrix rotation_0_3 = MatrixRotationND.Rotation(angle, dimension, 0, 3);
-        Matrix rotation_4_5 = MatrixRotationND.Rotation(angle, dimension, 4, 5);
+        angle += Time.deltaTime * speed;
+        if(angle > TWOPI)
+        {
+            angle -= TWOPI;
+            onFullRotation.Invoke();
+        }
 
+        RotateMatrix();
 
-        //16x5 X 5x5
-        Matrix rotatedMatrix = Matrix.StupidMultiply(verticesMatrix, rotation_3_4);
-        rotatedMatrix = Matrix.StupidMultiply(rotatedMatrix, rotation_0_3);
-        rotatedMatrix = Matrix.StupidMultiply(rotatedMatrix, rotation_4_5);
+        UpdateLineGroups();
+    }
+
+    private void RotateMatrix()
+    {
+        Matrix rotatedMatrix = verticesMatrix;
+        for (int i = 0; i < listRotationDimension.Length; i++)
+        {
+            Matrix rotationMatrix = MatrixRotationND.Rotation(angle, dimension, listRotationDimension[i].x, listRotationDimension[i].y);
+            rotatedMatrix = Matrix.StupidMultiply(rotatedMatrix, rotationMatrix);
+
+        }
 
         rotatedVertices = new Vector3[rotatedMatrix.rows];
         for (int i = 0; i < rotatedMatrix.rows; i++)
         {
             //Transform matrix row into 3d projection etc etc
 
-            rotatedVertices[i] = VectorN.NDtoVector3(rotatedMatrix.GetRow(i));
+            rotatedVertices[i] = dimensionReader.NDtoVector3(rotatedMatrix.GetRow(i)) * size;
         }
-
-        UpdateLineGroups();
     }
-
 
     public void GenerateNCube(NDCube root)
     {
@@ -83,15 +102,15 @@ public class NDCube : MonoBehaviour {
             return;
         }
 
-        AddLowerDimensionVertices(min1DimensionCubeLeft, -0.5f * size);
-        AddLowerDimensionVertices(min1DimensionCubeRight, 0.5f * size);
+        AddLowerDimensionVertices(min1DimensionCubeLeft, -0.5f);
+        AddLowerDimensionVertices(min1DimensionCubeRight, 0.5f);
         Link2LowerDimensions();
         CollectLineGroups();
     }
 
     NDCube GenerateLowerDimension()
     {
-        if(dimension <= 2)
+        if(dimension <= minDimension)
         {
             return null;
         }
@@ -99,6 +118,8 @@ public class NDCube : MonoBehaviour {
         int lowerDimension = dimension - 1;
         GameObject lowerDimGo = new GameObject("Dimension" + lowerDimension);
         lowerDimGo.transform.SetParent(transform);
+        lowerDimGo.transform.localPosition = Vector3.zero;
+
         NDCube ncube = lowerDimGo.AddComponent<NDCube>();
         ncube.dimension = lowerDimension;
 
@@ -109,10 +130,10 @@ public class NDCube : MonoBehaviour {
 
     void GenerateSquare()
     {
-        float[] v1 = { -0.5f * size, -0.5f * size };
-        float[] v2 = { -0.5f * size, 0.5f * size };
-        float[] v3 = { 0.5f * size, 0.5f * size };
-        float[] v4 = { 0.5f * size, -0.5f * size };
+        float[] v1 = { -0.5f, -0.5f };
+        float[] v2 = { -0.5f,  0.5f };
+        float[] v3 = {  0.5f,  0.5f };
+        float[] v4 = {  0.5f, -0.5f };
 
         vertices.Add(new VectorN(v1));
         vertices.Add(new VectorN(v2));
@@ -120,6 +141,11 @@ public class NDCube : MonoBehaviour {
         vertices.Add(new VectorN(v4));
 
         LineGroup lineGroup = Instantiate(root.lineGroupPrefab, transform);
+
+        lineGroup.lineRenderer.startColor = GetColorByDimension();
+        lineGroup.lineRenderer.endColor = GetColorByDimension();
+
+        lineGroup.transform.localPosition = Vector3.zero;
         lineGroup.indexTransform = new int[5];
         for (int i = 0; i < 4; i++)
         {
@@ -139,7 +165,6 @@ public class NDCube : MonoBehaviour {
         {
             VectorN newDimensionVertex = new VectorN(min1DimensionCube.vertices[i]);
             newDimensionVertex.AddDimension(newValue);
-            Debug.Log(newValue);
             vertices.Add(newDimensionVertex);
         }
     }
@@ -148,11 +173,17 @@ public class NDCube : MonoBehaviour {
     {
         GameObject connectionNull = new GameObject("Connection Null");
         connectionNull.transform.SetParent(transform);
+        connectionNull.transform.localPosition = Vector3.zero;
 
         int min1Length = min1DimensionCubeLeft.vertices.Count;
         for (int i = 0; i < min1Length; i++)
         {
             LineGroup lineGroup = Instantiate(root.lineGroupPrefab, connectionNull.transform);
+            lineGroup.transform.localPosition = Vector3.zero;
+
+            lineGroup.lineRenderer.startColor = GetColorByDimension();
+            lineGroup.lineRenderer.endColor = GetColorByDimension();
+
             lineGroup.indexTransform = new int[2];
             lineGroup.indexTransform[0] = i;
             lineGroup.indexTransform[1] = i + min1Length;
@@ -178,53 +209,16 @@ public class NDCube : MonoBehaviour {
 
     void UpdateLineGroups()
     {
-        //Vector3[] v3 = new Vector3[vertices.Count];
-        //for (int i = 0; i < v3.Length; i++)
-        //{
-        //    v3[i] = vertices[i].ToVector3();
-        //}
-
         for (int i = 0; i < lineGroups.Count; i++)
         {
             lineGroups[i].ApplyLineToGroup(rotatedVertices);
         }
     }
-}
 
-public class MatrixRotation5D
-{
-    public static Matrix RotationXW(float angle)
+    Color GetColorByDimension()
     {
-        double cos = Mathf.Cos(angle);
-        double sin = Mathf.Sin(angle);
-        return new Matrix
-        (
-            new double[,]
-            {
-                    { cos, 0, 0, -sin ,0},
-                    { 0  , 1, 0, 0    ,0},
-                    { 0  , 0, 1, 0    ,0},
-                    { sin, 0, 0, cos  ,0},
-                    { 0  , 0, 0, 0    ,1},
-            }
-        );
-    }
-
-    public static Matrix RotationWV(float angle)
-    {
-        double cos = Mathf.Cos(angle);
-        double sin = Mathf.Sin(angle);
-        return new Matrix
-        (
-            new double[,]
-            {
-                    { 1, 0, 0, 0  ,0},
-                    { 0, 1, 0, 0  ,0},
-                    { 0, 0, 1, 0  ,0},
-                    { 0, 0, 0, cos,-sin},
-                    { 0, 0, 0, sin,cos},
-            }
-        );
+        float t = (float)(dimension - minDimension) / (root.dimension - minDimension);
+        return root.gradientOverDimensions.Evaluate(t);
     }
 }
 

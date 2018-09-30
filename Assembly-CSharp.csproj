@@ -118,9 +118,13 @@
     <Compile Include="Assets\Scripts\4D\Generic4DObject.cs" />
     <Compile Include="Assets\Scripts\4D\LineGroup.cs" />
     <Compile Include="Assets\Scripts\4D\Meduse4D.cs" />
-    <Compile Include="Assets\Scripts\4D\NDCube.cs" />
+    <Compile Include="Assets\Scripts\4D\ND\ND Reader\NDimensionReader.cs" />
+    <Compile Include="Assets\Scripts\4D\ND\ND Reader\NDimensionReader_Basic.cs" />
+    <Compile Include="Assets\Scripts\4D\ND\ND Reader\NDimensionReader_Round.cs" />
+    <Compile Include="Assets\Scripts\4D\ND\NDCube.cs" />
+    <Compile Include="Assets\Scripts\4D\ND\RandomRotationNDCube.cs" />
+    <Compile Include="Assets\Scripts\4D\ND\VectorN.cs" />
     <Compile Include="Assets\Scripts\4D\Rotation4D.cs" />
-    <Compile Include="Assets\Scripts\4D\VectorN.cs" />
     <Compile Include="Assets\Scripts\Animation\Neural Network\Connection.cs" />
     <Compile Include="Assets\Scripts\Animation\Neural Network\LayerNeuron.cs" />
     <Compile Include="Assets\Scripts\Animation\Neural Network\NeuralNetworkAnim.cs" />

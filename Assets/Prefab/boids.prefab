@@ -78,7 +78,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 15
+  m_Time: 1
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 15
@@ -163,16 +163,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c5513cda27d204382f7cc4c638a3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
-  detectRadius: 15
-  seperationRadius: 3
-  steerSpeed: 0.6
+  speed: 25
+  detectRadius: 25
+  seperationRadius: 10
+  steerSpeed: 5
   delayCheckingCollision: 0.1
-  cohesionFactor: 0.68
-  alignementFactor: 0.2
-  separationFactor: 0.7
-  outOfAquariumFactor: 0.4
-  obstacleAvoidanceFactor: 3
+  cohesionFactor: 0.3
+  alignementFactor: 0.3
+  separationFactor: 0.3
+  outOfAquariumFactor: 0.3
+  obstacleAvoidanceFactor: 0.3
 --- !u!135 &135501653530205470
 SphereCollider:
   m_ObjectHideFlags: 1
