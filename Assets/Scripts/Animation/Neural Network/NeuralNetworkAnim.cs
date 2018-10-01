@@ -12,7 +12,8 @@ public class NeuralNetworkAnim : MonoBehaviour {
     [SerializeField] bool cylinderMode;
     [SerializeField] int[] layerDimension;
     [SerializeField] float timeBetweenNeuronConnection;
-    [SerializeField] float scaling = 10;
+    [SerializeField] Vector2 scaling;
+
     //[SerializeField] float growth = 2;
 
     [Header("Connections")]
@@ -22,7 +23,6 @@ public class NeuralNetworkAnim : MonoBehaviour {
     [SerializeField] Color endColor;
 
     LayerNeuron[] layers;
-
 
     int layer;
     int neuronPerLayer;
@@ -55,10 +55,16 @@ public class NeuralNetworkAnim : MonoBehaviour {
 
     Vector3 CalculateNeuronPosition(int x, int y, int numberPerLayer)
     {
-        if(cylinderMode)
-            return GameMath.SphericalRotation(scaling*5, x*.3f, 0) + Vector3.up * y * scaling;
+        if (cylinderMode)
+        {
+            float t = (float)x / (layerDimension.Length-1);
+            float lerped = Mathf.Lerp(0, Mathf.PI * 2, t);
+            return GameMath.SphericalRotation(scaling.x, lerped, 0) + Vector3.up * y * scaling.y;
+        }
         else
-            return new Vector3(x * scaling, -y * scaling, 0);
+        {
+            return new Vector3(x * scaling.x, -y * scaling.y, 0);
+        }
     }
 
     void CreateConnections()

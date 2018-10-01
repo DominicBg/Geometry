@@ -13,6 +13,7 @@ public class Neuron : MonoBehaviour {
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        transform.LookAt(Camera.main.transform);
     }
 
     public void PlayAnimationWithConnection(int connectionIndex)

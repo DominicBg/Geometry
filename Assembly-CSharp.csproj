@@ -68,6 +68,8 @@
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\-Dome\-cameraRig\Follower.cs" />
+    <Compile Include="Assets\-Dome\-cameraRig\OutputSetup.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -133,8 +135,10 @@
     <Compile Include="Assets\Scripts\Animation\RootsController.cs" />
     <Compile Include="Assets\Scripts\Animation\SinSquare.cs" />
     <Compile Include="Assets\Scripts\Animation\SinSquareController.cs" />
+    <Compile Include="Assets\Scripts\Animation\Snakes.cs" />
     <Compile Include="Assets\Scripts\Animation\SphereDraw.cs" />
     <Compile Include="Assets\Scripts\Animation\SpinningTriangle.cs" />
+    <Compile Include="Assets\Scripts\Animation\TreeController.cs" />
     <Compile Include="Assets\Scripts\Animation\TwistPyramid.cs" />
     <Compile Include="Assets\Scripts\Animation\TwistPyramidController.cs" />
     <Compile Include="Assets\Scripts\Flock\Boids.cs" />
@@ -150,6 +154,7 @@
     <Compile Include="Assets\Scripts\Util\Matrix4x4Extension.cs" />
     <Compile Include="Assets\Scripts\Util\MatrixVerticesGenerator.cs" />
     <Compile Include="Assets\Scripts\Util\Perlin.cs" />
+    <Compile Include="Assets\Scripts\Util\RotateAround.cs" />
     <Compile Include="Assets\Scripts\Util\Rotating.cs" />
     <Compile Include="Assets\Scripts\Util\Vector234Extensions.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
@@ -184,6 +189,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\GrainGen.shader" />
+    <None Include="Assets\-Dome\-ShadersDome\Unlit.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\FXAA.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
