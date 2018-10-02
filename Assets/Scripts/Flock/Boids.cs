@@ -28,10 +28,14 @@ public class Boids : MonoBehaviour {
 
     float currentDelayCheckingCollision = 0;
 
+    public bool isSpherical;
+
     private void Start()
     {
-        //direction = Random.onUnitSphere.normalized;
-        direction = Random.insideUnitCircle.normalized;
+        if(isSpherical)
+            direction = Random.onUnitSphere.normalized;
+        else
+            direction = Random.insideUnitCircle.normalized;
 
     }
 
@@ -102,10 +106,6 @@ public class Boids : MonoBehaviour {
     Vector3 CalculateCohesion()
     {
         Vector3 centerOfMass = Vector3.zero;
-        //for (int i = 0; i < surrounding.Length; i++)
-        //{
-        //    centerOfMass += surrounding[i].transform.position;
-        //}
 
         foreach(Boids boids in surroundingBoids)
         {
@@ -120,10 +120,7 @@ public class Boids : MonoBehaviour {
     Vector3 CalculateAlignement()
     {
         Vector3 velocityMean = Vector3.zero;
-        //for (int i = 0; i < surrounding.Length; i++)
-        //{
-        //    velocityMean += flock.GetBoidsByID(surrounding[i].gameObject.GetInstanceID()).direction;
-        //}
+
         foreach (Boids boids in surroundingBoids)
         {
             velocityMean += boids.direction;
@@ -136,17 +133,7 @@ public class Boids : MonoBehaviour {
     Vector3 CalculateSeparation()
     {
         Vector3 seperationMean = Vector3.zero;
-        //for (int i = 0; i < surrounding.Length; i++)
-        //{
-        //    float diff = (transform.position - surrounding[i].transform.position).magnitude;
-        //    if(diff < seperationRadius)
-        //    {
-        //        float ratioSeperation = 1 - (diff / seperationRadius);
-        //        float separationForce = (ratioSeperation * ratioSeperation);
-        //        seperationMean += (transform.position - surrounding[i].transform.position) * separationForce;
-        //        separationCount++;
-        //    }
-        //}
+
         foreach (Boids boids in surroundingBoids)
         {
             float diff = (transform.position - boids.transform.position).magnitude;

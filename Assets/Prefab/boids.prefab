@@ -165,14 +165,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   detectRadius: 25
-  seperationRadius: 10
+  seperationRadius: 15
   steerSpeed: 5
   delayCheckingCollision: 0.1
   cohesionFactor: 0.3
-  alignementFactor: 0.3
-  separationFactor: 0.3
+  alignementFactor: 0.2
+  separationFactor: 0.4
   outOfAquariumFactor: 0.3
   obstacleAvoidanceFactor: 0.3
+  isSpherical: 0
 --- !u!135 &135501653530205470
 SphereCollider:
   m_ObjectHideFlags: 1

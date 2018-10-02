@@ -141,7 +141,9 @@
     <Compile Include="Assets\Scripts\Animation\TreeController.cs" />
     <Compile Include="Assets\Scripts\Animation\TwistPyramid.cs" />
     <Compile Include="Assets\Scripts\Animation\TwistPyramidController.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Flock\Boids.cs" />
+    <Compile Include="Assets\Scripts\Flock\BoidsDome.cs" />
     <Compile Include="Assets\Scripts\Flock\Flock.cs" />
     <Compile Include="Assets\Scripts\Graphs\ChipsGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\CircularSea.cs" />

@@ -154,6 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 173966688}
   - component: {fileID: 173966687}
+  - component: {fileID: 173966689}
   m_Layer: 0
   m_Name: Flock
   m_TagString: Untagged
@@ -172,11 +173,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971aa524950ec0d4f904b6f11d8ac6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flockMode: 1
   aquariumSize: 200
-  numberBoids: 100
+  numberBoids: 200
   boidsPrefab: {fileID: 114939153479368524, guid: 46270c00d8f82694190d59e2082c03ce,
     type: 2}
+  boidsDomePrefab: {fileID: 114749636117160030, guid: 7a48172df44d9dd4dba98ae589032ff3,
+    type: 2}
   spawnRadius: 50
+  boidsContainer: {fileID: 229672781}
+  boidsDomeContainer: {fileID: 2002499497}
 --- !u!4 &173966688
 Transform:
   m_ObjectHideFlags: 0
@@ -186,10 +192,24 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 229672781}
+  - {fileID: 2002499497}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &173966689
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 173966686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &207100847
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +295,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 207100847}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &229672780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229672781}
+  m_Layer: 0
+  m_Name: BoidsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229672781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229672780}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 78.6875, y: 69.765625, z: -18.0625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 173966688}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &451039987
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +334,8 @@ GameObject:
   - component: {fileID: 451039989}
   - component: {fileID: 451039988}
   - component: {fileID: 451039991}
+  - component: {fileID: 451039993}
+  - component: {fileID: 451039992}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -410,6 +460,31 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 1
       enableBigTilePrepass: 1
       isFptlEnabled: 1
+--- !u!114 &451039992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 451039987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e574f893aceb034ba8b43e480da99ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 25
+  mouseSensibility: 25
+--- !u!135 &451039993
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 451039987}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 150
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &948161638
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,11 +682,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971aa524950ec0d4f904b6f11d8ac6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flockMode: 0
   aquariumSize: 200
   numberBoids: 100
   boidsPrefab: {fileID: 114939153479368524, guid: 957f32245cd34434c9a4d6e38abfed34,
     type: 2}
+  boidsDomePrefab: {fileID: 0}
   spawnRadius: 50
+  boidsContainer: {fileID: 0}
+  boidsDomeContainer: {fileID: 0}
 --- !u!4 &1274472333
 Transform:
   m_ObjectHideFlags: 0
@@ -625,6 +704,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1462918887
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1769577186
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +835,36 @@ Transform:
   m_Father: {fileID: 128268732}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1815086723 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100012, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045,
+    type: 2}
+  m_PrefabInternal: {fileID: 1462918887}
+--- !u!135 &1815086724
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1815086723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 150
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1815086725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1815086723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e574f893aceb034ba8b43e480da99ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 25
+  mouseSensibility: 25
 --- !u!1 &2001704408
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,3 +1015,31 @@ MonoBehaviour:
   showAdditionalSettings: 0
   displayLightIntensity: 3.1415927
   displayAreaLightEmissiveMesh: 0
+--- !u!1 &2002499496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2002499497}
+  m_Layer: 0
+  m_Name: BoidsDomeContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2002499497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2002499496}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 78.6875, y: 69.765625, z: -18.0625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 173966688}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
