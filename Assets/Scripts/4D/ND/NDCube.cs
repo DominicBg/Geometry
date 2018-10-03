@@ -17,8 +17,11 @@ public class NDCube : MonoBehaviour {
     NDCube root;
 
     Matrix verticesMatrix;
+    Matrix modifiedVerticesMatrix;
+
     Vector3[] rotatedVertices;
 
+    [SerializeField] RotationByDimension[] rotationByDimension;
     [SerializeField] NDimensionReader dimensionReader;
     [SerializeField] float speed;
     [SerializeField] LineGroup lineGroupPrefab;
@@ -39,6 +42,25 @@ public class NDCube : MonoBehaviour {
         root = this;
         GenerateNCube(root);
         CalculateVerticesMatrix();
+       // PartialRotation();
+    }
+
+    private void OnValidate()
+    {
+        PartialRotation();
+    }
+
+    private void PartialRotation()
+    {
+        if (verticesMatrix == null)
+            return;
+
+        for (int i = 0; i < rotationByDimension.Length; i++)
+        {
+            Matrix previousMatrix = (i == 0) ? verticesMatrix : modifiedVerticesMatrix;
+            rotationByDimension[i].Update();
+            modifiedVerticesMatrix = rotationByDimension[i].RotatePartialMatrix(previousMatrix);
+        }
     }
 
     void CalculateVerticesMatrix()
@@ -48,6 +70,7 @@ public class NDCube : MonoBehaviour {
         {
             verticesMatrix.SetRow(i, vertices[i].GetValues());
         }
+        modifiedVerticesMatrix = verticesMatrix.Duplicate();
     }
 
     private void Update()
@@ -62,6 +85,8 @@ public class NDCube : MonoBehaviour {
             onFullRotation.Invoke();
         }
 
+        PartialRotation();
+
         RotateMatrix();
 
         UpdateLineGroups();
@@ -69,19 +94,16 @@ public class NDCube : MonoBehaviour {
 
     private void RotateMatrix()
     {
-        Matrix rotatedMatrix = verticesMatrix;
+        Matrix rotatedMatrix = modifiedVerticesMatrix.Duplicate();
         for (int i = 0; i < listRotationDimension.Length; i++)
         {
             Matrix rotationMatrix = MatrixRotationND.Rotation(angle, dimension, listRotationDimension[i].x, listRotationDimension[i].y);
             rotatedMatrix = Matrix.StupidMultiply(rotatedMatrix, rotationMatrix);
-
         }
 
         rotatedVertices = new Vector3[rotatedMatrix.rows];
         for (int i = 0; i < rotatedMatrix.rows; i++)
         {
-            //Transform matrix row into 3d projection etc etc
-
             rotatedVertices[i] = dimensionReader.NDtoVector3(rotatedMatrix.GetRow(i)) * size;
         }
     }
@@ -106,6 +128,8 @@ public class NDCube : MonoBehaviour {
         AddLowerDimensionVertices(min1DimensionCubeRight, 0.5f);
         Link2LowerDimensions();
         CollectLineGroups();
+
+        
     }
 
     NDCube GenerateLowerDimension()
@@ -220,6 +244,61 @@ public class NDCube : MonoBehaviour {
         float t = (float)(dimension - minDimension) / (root.dimension - minDimension);
         return root.gradientOverDimensions.Evaluate(t);
     }
+
+    [System.Serializable]
+    public class RotationByDimension
+    {
+        public int dimension;
+        public Vector2Int rotationAroundDimension;
+        public float angle;
+        public float speed;
+
+        public void Update()
+        {
+            angle += Time.deltaTime * speed;
+        }
+
+        public Matrix RotatePartialMatrix(Matrix matrix)
+        {
+            //Concept 
+            /* On rotate une matrice par l'angle et les dimensions
+             * Si on rotate par la 2ieme dimension, il y a 4 vertex
+             * Donc on alterne en 4 vertex de la  matrice orinal et de la rotated
+             * 
+             * Si on rotate par la 3ième, il y a 8 vertex.. même chose
+             * Si on rotate par la Nième dimension, il y a (2 ^ n) vertex
+             */
+
+            Matrix partialRotatedMatrix = new Matrix(matrix.rows, matrix.cols);
+            Matrix rotationMatrix = MatrixRotationND.Rotation(angle * Mathf.Deg2Rad, matrix.cols, rotationAroundDimension.x, rotationAroundDimension.y);
+
+            Matrix fullyRotatedMatrix = Matrix.StupidMultiply(matrix, rotationMatrix);
+
+            int twoPowerOfDimension = (int)Mathf.Pow(2, dimension);
+            bool takeFromOriginal = true;
+            int internalCounter = 0;
+            for (int i = 0; i < matrix.rows; i++)
+            {
+                if(takeFromOriginal)
+                {
+                    partialRotatedMatrix.SetRow(i, matrix.GetRow(i));
+                }
+                else
+                {
+                    partialRotatedMatrix.SetRow(i, fullyRotatedMatrix.GetRow(i));
+
+                }
+
+                internalCounter++;
+                if (internalCounter == twoPowerOfDimension)
+                {
+                    internalCounter = 0;
+                    takeFromOriginal = !takeFromOriginal;
+                }
+            }
+            return partialRotatedMatrix;
+        }
+    }
 }
 
 public class MatrixRotationND
@@ -242,5 +321,4 @@ public class MatrixRotationND
 
         return new Matrix (matrix);
     }
-
 }
