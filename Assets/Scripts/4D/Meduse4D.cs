@@ -9,6 +9,7 @@ public class Meduse4D : FourDCubeController {
     [Header("Pulse")]
     [SerializeField] Degree pulseDegre;
     [SerializeField] AnimationCurve pulseCurve;
+    [SerializeField, Range(0,1)] float randomiseRatio;
 
     [Header("Animation")]
     [SerializeField] float fallingSpeed;
@@ -26,12 +27,32 @@ public class Meduse4D : FourDCubeController {
     int pulseDegreeTurnNumber = 0;
 
 
+    private void Start()
+    {
+        base.Start();
+        RandomiseAllValues();
+    }
+
+
     private void Update()
     {
         UpdatePulseTimer();
         UpdateOffSet();
         UpdateTentaclePositions();
 
+    }
+
+    void RandomiseAllValues()
+    {
+        fallingSpeed = RandomiseValue(fallingSpeed);
+        jumpingHeigth = RandomiseValue(jumpingHeigth);
+        speed = RandomiseValue(speed);
+    }
+
+    float RandomiseValue(float value)
+    {
+        float valueRatio = value * randomiseRatio;
+        return value + Random.Range(-valueRatio, valueRatio); 
     }
 
     void UpdateTentaclePositions()
@@ -84,8 +105,9 @@ public class Meduse4D : FourDCubeController {
 
         transform.position += (Vector3.down * Time.deltaTime) * fallingSpeed;
         transform.position += (transform.up * Time.deltaTime) * (animationValue * jumpingHeigth);
-    }
 
+        //transform.RotateAround()
+    }
 
     float DegreeToFloat(Degree degree)
     {

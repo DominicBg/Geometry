@@ -31,7 +31,7 @@ public class FourDCubeController : MonoBehaviour
     //float pulseTimer = 0;
     //int pulseDegreeTurnNumber = 0;
 
-    private void Start()
+    public void Start()
     {
         fourDCubes = GetComponentsInChildren<FourDimensionCube>();
     }
