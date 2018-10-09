@@ -12,6 +12,7 @@ public class NDCube : MonoBehaviour {
 
     public int dimension;
     public float size = 10;
+    [SerializeField] float lineSize = 1;
     NDCube min1DimensionCubeLeft;
     NDCube min1DimensionCubeRight;
     NDCube root;
@@ -236,6 +237,8 @@ public class NDCube : MonoBehaviour {
         for (int i = 0; i < lineGroups.Count; i++)
         {
             lineGroups[i].ApplyLineToGroup(rotatedVertices);
+            lineGroups[i].lineRenderer.startWidth = lineSize;
+            lineGroups[i].lineRenderer.endWidth = lineSize;
         }
     }
 

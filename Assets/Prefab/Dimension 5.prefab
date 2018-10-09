@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1909902022248610}
+  m_IsPrefabAsset: 1
+--- !u!1 &1909902022248610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4586789770399626}
+  - component: {fileID: 114341885483374422}
+  - component: {fileID: 114105720238075222}
+  - component: {fileID: 114117753029831340}
+  m_Layer: 0
+  m_Name: Dimension 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4586789770399626
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909902022248610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114105720238075222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909902022248610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b1f5bf315cb6747b4eefe2b5f5bc9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  howManyRotations: 2
+--- !u!114 &114117753029831340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909902022248610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5c2cacebcb24445b751b636676305b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 2
+  growth: 1
+--- !u!114 &114341885483374422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909902022248610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397a2699857cc9a46adde09d49c9ad83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onFullRotation:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114105720238075222}
+        m_MethodName: RandomiseRotation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  gradientOverDimensions:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 0.5796205, g: 0.7273189, b: 1, a: 1}
+    key2: {r: 0.4292453, g: 0.62977725, b: 1, a: 1}
+    key3: {r: 0.43983856, g: 0.47687978, b: 1, a: 0}
+    key4: {r: 0.47287846, g: 0, b: 1, a: 0}
+    key5: {r: 0.47287846, g: 0, b: 1, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 16769
+    ctime2: 32189
+    ctime3: 47417
+    ctime4: 65535
+    ctime5: 65535
+    ctime6: 0
+    ctime7: 0
+    atime0: 386
+    atime1: 65535
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  dimension: 5
+  size: 10
+  rotationByDimension:
+  - dimension: 3
+    rotationAroundDimension: {x: 2, y: 3}
+    angle: 45
+    speed: 0
+  dimensionReader: {fileID: 114117753029831340}
+  speed: 1
+  lineGroupPrefab: {fileID: 114721724961745786, guid: 5283650a1074ca74abd7c1bd9fd423d7,
+    type: 2}
+  listRotationDimension:
+  - {x: 0, y: 1}

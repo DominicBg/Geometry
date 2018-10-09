@@ -38,7 +38,9 @@ public class CameraController : MonoBehaviour {
         if (input.magnitude > 1)
             input.Normalize();
 
+        Vector3 direction = transform.forward * y + transform.up * z + transform.right * x;
+        //transform.position += transform.TransformDirection(input) * speed * Time.deltaTime;
+        transform.position += direction * speed * Time.deltaTime;
 
-        transform.position += transform.TransformDirection(input) * speed * Time.deltaTime;
     }
 }

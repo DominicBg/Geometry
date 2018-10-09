@@ -201,6 +201,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 5
   size: 10
+  lineSize: 0.5
   rotationByDimension:
   - dimension: 3
     rotationAroundDimension: {x: 2, y: 3}
@@ -315,6 +316,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 4
   size: 10
+  lineSize: 0.5
   rotationByDimension:
   - dimension: 3
     rotationAroundDimension: {x: 0, y: 2}
@@ -440,6 +442,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 8
   size: 5
+  lineSize: 0.5
   rotationByDimension: []
   dimensionReader: {fileID: 218442916}
   speed: 1
@@ -550,6 +553,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 5
   size: 10
+  lineSize: 0.5
   rotationByDimension:
   - dimension: 3
     rotationAroundDimension: {x: 0, y: 2}
@@ -666,6 +670,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 4
   size: 10
+  lineSize: 0.5
   rotationByDimension:
   - dimension: 3
     rotationAroundDimension: {x: 0, y: 2}
@@ -735,6 +740,7 @@ MonoBehaviour:
   distance: 54
   growth: 1
   roundness: 5
+  forceRounedd: 0
 --- !u!114 &566777872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,6 +800,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 8
   size: 5
+  lineSize: 0.5
   rotationByDimension: []
   dimensionReader: {fileID: 566777871}
   speed: 1
@@ -903,6 +910,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 3
   size: 10
+  lineSize: 0.5
   rotationByDimension:
   - dimension: 2
     rotationAroundDimension: {x: 0, y: 1}
@@ -972,6 +980,7 @@ MonoBehaviour:
   distance: 54
   growth: 1
   roundness: 4.68
+  forceRounedd: 0
 --- !u!114 &660258878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,6 +1040,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 8
   size: 5
+  lineSize: 0.5
   rotationByDimension: []
   dimensionReader: {fileID: 660258877}
   speed: 0.5
@@ -1141,6 +1151,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 7
   size: 7
+  lineSize: 0.5
   rotationByDimension: []
   dimensionReader: {fileID: 691138153}
   speed: 1
@@ -1356,6 +1367,7 @@ MonoBehaviour:
   distance: 54
   growth: 0.1
   roundness: 5
+  forceRounedd: 0
 --- !u!114 &1223193548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,6 +1427,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 8
   size: 5
+  lineSize: 0.5
   rotationByDimension: []
   dimensionReader: {fileID: 1223193547}
   speed: 1
@@ -1512,6 +1525,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 6
   size: 10
+  lineSize: 0.5
   rotationByDimension: []
   dimensionReader: {fileID: 1269960467}
   speed: 1
@@ -1907,6 +1921,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   dimension: 4
   size: 10
+  lineSize: 0.5
   rotationByDimension:
   - dimension: 2
     rotationAroundDimension: {x: 0, y: 1}

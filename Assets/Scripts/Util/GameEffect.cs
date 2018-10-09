@@ -472,7 +472,40 @@ public static class GameMath
 		return newPoint;
 	}
 	
-	public static Vector3 RotateVectorY(float angle, Vector3 point)
+    public static Vector2 PolarToCartesian(float radius, float theta)
+    {
+        float x = radius * Mathf.Cos(theta);
+        float y = radius * Mathf.Sin(theta);
+        return new Vector2(x, y);
+    }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="radiusAndTheta">A Vector2 containing x = radius, y = theta</param>
+    /// <returns></returns>
+    public static Vector2 PolarToCartesian(Vector2 radiusAndTheta)
+    {
+        return PolarToCartesian(radiusAndTheta.x, radiusAndTheta.y);
+    }
+
+    /// <summary>
+    /// Start with a x,y and receive a Vector2(Radius, Theta)
+    /// </summary>
+    /// <param name="position"></param>
+    /// <returns></returns>
+    public static Vector2 CartesianToPolar(Vector2 position)
+    {
+        float r = Mathf.Sqrt(position.x * position.x + position.y * position.y);
+        float theta = Mathf.Atan2(position.y, position.x);
+        return new Vector2(r, theta);
+    }
+
+    public static Vector2 CartesianToPolar(float x, float y)
+    {
+        return CartesianToPolar(new Vector2(x,y));
+    }
+
+    public static Vector3 RotateVectorY(float angle, Vector3 point)
 	{
 		Vector2 vec = RotateVector(angle,  new Vector2 (point.x, point.z));
 		return new Vector3 (vec.x, point.y, vec.y);

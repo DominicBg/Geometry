@@ -4,22 +4,44 @@ using UnityEngine;
 
 public class Gridrenderer : MonoBehaviour {
 
+    [Header("General")]
     [SerializeField] int cols;
     [SerializeField] int rows;
     [SerializeField] float scale;
     [SerializeField] float lineRendererYoffset = 1;
     [SerializeField] Vector2 offset;
+    [SerializeField] bool showRows;
+    [SerializeField] bool showCols;
+    [SerializeField] bool mirrorFlip;
+
+
+    [Header("Twist")]
+    [SerializeField] float twistFactor = 1;
+    [SerializeField] AnimationCurve twistOverDistanceCurve;
+    [SerializeField] float maxTwist;
+
+    [Header("Twist anim")]
+    [SerializeField] Vector2 twistOffSet;
+    [SerializeField] Vector2 twistSinAmp;
+    [SerializeField] Vector2 twistSinFreq;
+    [SerializeField] Vector2 twistSinFreqOffset;
+
+    [Header("General")]
     [SerializeField] LineRenderer lineRendererPrefab;
 
     LineRenderer[] lineRendererCol;
     LineRenderer[] lineRendererRow;
 
     float[,] zPositionMatrix;
+    Vector2[,] twirlMatrix;
+    Vector2 internalTwistOffSet;
 
     [SerializeField] Graph graph;
 
     MeshFilter meshFilder;
     Mesh mesh;
+
+    [SerializeField] bool generateMesh;
 
     private void Start()
     {
@@ -58,30 +80,72 @@ public class Gridrenderer : MonoBehaviour {
 
     void Update()
     {
+        UpdateTwistOffset();
+        UpdateTwirlMatrix();
         UpdateGrid();
-        GenerateMesh();
+        if(generateMesh)
+            GenerateMesh();
     }
 
     void UpdateGrid()
+    {
+        CalculatePointInMatrix();
+        SetLineRendererPosition(lineRendererCol, false, showRows);
+        SetLineRendererPosition(lineRendererRow, true, showCols);
+    }
+
+    private void CalculatePointInMatrix()
     {
         for (int x = 0; x < cols; x++)
         {
             for (int y = 0; y < rows; y++)
             {
-                zPositionMatrix[x, y] = graph.CalculatePoint(x+offset.x, y+offset.y);
+                zPositionMatrix[x, y] = graph.CalculatePoint((x + offset.x), (y + offset.y));
             }
         }
+    }
 
-        for (int i = 0; i < cols; i++)
+    void SetLineRendererPosition(LineRenderer[] lineRenderer, bool invertedXY, bool show)
+    {
+        int internalRows = (invertedXY) ? cols : rows;
+        int internalCols = (invertedXY) ? rows : cols;
+   
+        for (int i = 0; i < internalRows; i++)
         {
-            lineRendererCol[i].positionCount = rows;
-
-            for (int j = 0; j < rows; j++)
+            if (!show)
             {
-                lineRendererCol[i].SetPosition(j,
-                    new Vector3(i * scale, zPositionMatrix[i, j]+ lineRendererYoffset, j* scale));
+                lineRenderer[i].positionCount = 0;
+                continue;
+            }
+
+            lineRenderer[i].positionCount = internalRows;
+
+            for (int j = 0; j < internalCols; j++)
+            {
+                //inverted variables
+                int ii = (invertedXY) ? j : i;
+                int jj = (invertedXY) ? i : j;
+
+                float x = twirlMatrix[ii, jj].x * scale;
+                float y = twirlMatrix[ii, jj].y * scale;
+
+                if(mirrorFlip && invertedXY)
+                {
+                    float tempx = x;
+                    x = y;
+                    y = tempx;
+                }
+
+                lineRenderer[i].SetPosition(j,
+                    new Vector3(x, zPositionMatrix[i, j] + lineRendererYoffset, y));
             }
         }
+    }
+
+    void UpdateTwirlMatrix()
+    {
+        twirlMatrix = new Vector2[rows, cols];
+        Vector2 middlePoint = new Vector2(rows * 0.5f, cols * 0.5f);
 
         for (int i = 0; i < rows; i++)
         {
@@ -89,10 +153,24 @@ public class Gridrenderer : MonoBehaviour {
 
             for (int j = 0; j < cols; j++)
             {
-                lineRendererRow[i].SetPosition(j, 
-                    new Vector3(j * scale, zPositionMatrix[i, j]+ lineRendererYoffset, i * scale));
+                Vector2 currentPoint = new Vector2(i + internalTwistOffSet.x, j + internalTwistOffSet.y);
+                //Prend la distance du point par rapport au milieu
+                //calcule t comme ratio de distance 
+                //Twist par rapport a la distance
+                float distanceFromCenter = (currentPoint - middlePoint).magnitude;
+                float max = middlePoint.magnitude;
+                float t = (Mathf.Min(distanceFromCenter, max) / max);
+                float angle = Mathf.Lerp(0, maxTwist, 1 - twistOverDistanceCurve.Evaluate(t));
+                twirlMatrix[i, j] = GameMath.RotateVector(angle * twistFactor, currentPoint - middlePoint);
             }
         }
+    }
+
+    void UpdateTwistOffset()
+    {
+        internalTwistOffSet = twistOffSet + new Vector2(
+            twistSinAmp.x * Mathf.Sin(Time.time * twistSinFreq.x + twistSinFreqOffset.x * Mathf.Deg2Rad),
+            twistSinAmp.y * Mathf.Sin(Time.time * twistSinFreq.y + twistSinFreqOffset.y * Mathf.Deg2Rad));
     }
 
     void GenerateMesh()
@@ -115,15 +193,15 @@ public class Gridrenderer : MonoBehaviour {
                 triangles.Add(GetIndexFromXY(x + 1, y, cols));
             }
         }
+
         for (int y = 0; y < rows; y++)
         {
             for (int x = 0; x < cols; x++)
             {
-                Vector3 vertex = new Vector3(x*scale, zPositionMatrix[x, y], y * scale);
+                Vector3 vertex = new Vector3(x * scale, zPositionMatrix[x, y], y * scale);
                 vertices.Add(vertex);
             }
         }
-
 
         mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
@@ -133,5 +211,4 @@ public class Gridrenderer : MonoBehaviour {
     {
         return y * width + x;
     }
-
 }

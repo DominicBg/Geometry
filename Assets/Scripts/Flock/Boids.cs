@@ -86,8 +86,7 @@ public class Boids : MonoBehaviour {
             CalculateAlignement()        * alignementFactor +
             CalculateSeparation()        * separationFactor +
             CalculateOutOfAquarium()     * outOfAquariumFactor +
-            CalculateObstacleAvoidance() * obstacleAvoidanceFactor;
-            
+            CalculateObstacleAvoidance() * obstacleAvoidanceFactor;        
 
         direction = Vector3.Lerp(direction, desiredDirection, steerSpeed * Time.deltaTime).normalized;
     }
@@ -102,6 +101,7 @@ public class Boids : MonoBehaviour {
         }
         return direction;
     }
+
 
     Vector3 CalculateCohesion()
     {
