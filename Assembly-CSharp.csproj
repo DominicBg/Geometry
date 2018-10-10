@@ -138,9 +138,15 @@
     <Compile Include="Assets\Scripts\Animation\Snakes.cs" />
     <Compile Include="Assets\Scripts\Animation\SphereDraw.cs" />
     <Compile Include="Assets\Scripts\Animation\SpinningTriangle.cs" />
+    <Compile Include="Assets\Scripts\Animation\SquishingAnimation.cs" />
     <Compile Include="Assets\Scripts\Animation\TreeController.cs" />
     <Compile Include="Assets\Scripts\Animation\TwistPyramid.cs" />
     <Compile Include="Assets\Scripts\Animation\TwistPyramidController.cs" />
+    <Compile Include="Assets\Scripts\Biostuff\Mushroom.cs" />
+    <Compile Include="Assets\Scripts\Biostuff\MushroomLineRenderer.cs" />
+    <Compile Include="Assets\Scripts\Biostuff\Mushtrailroom.cs" />
+    <Compile Include="Assets\Scripts\Biostuff\PhyllotaxisParticles.cs" />
+    <Compile Include="Assets\Scripts\Biostuff\PlantStem.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Flock\Boids.cs" />
     <Compile Include="Assets\Scripts\Flock\BoidsDome.cs" />
@@ -153,7 +159,6 @@
     <Compile Include="Assets\Scripts\Graphs\PerlinGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\RippleGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\WaveGraph.cs" />
-    <Compile Include="Assets\Scripts\Others\PhyllotaxisParticles.cs" />
     <Compile Include="Assets\Scripts\Util\ForwardRotateAround.cs" />
     <Compile Include="Assets\Scripts\Util\GameEffect.cs" />
     <Compile Include="Assets\Scripts\Util\LookAt.cs" />

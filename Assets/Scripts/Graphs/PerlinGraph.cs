@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class PerlinGraph : Graph
 {
-    [SerializeField] float amplitude;
-    [SerializeField] Vector2 speed;
-    [SerializeField] Vector2 frequency;
-    [SerializeField] Vector2 seeds;
+    [SerializeField] PerlinOctave[] perlinOctaves;
 
     public override float CalculatePoint(float x, float y)
     {
-        return amplitude * Mathf.PerlinNoise(seeds.x + Time.time * speed.x + x * frequency.x, seeds.y + Time.time * speed.y + y * frequency.y);
-    }
+        return PerlinOctave.CalculateOctaves(perlinOctaves,x,y);
+     }
 }

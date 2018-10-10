@@ -15,11 +15,7 @@ public class SphereDraw : MonoBehaviour {
     float radius;
     float phi, theta;
     float TWOPI = Mathf.PI * 2;
-    // Use this for initialization
-	void Start () {
-		
-	}
-	
+
 	// Update is called once per frame
 	void Update ()
     {

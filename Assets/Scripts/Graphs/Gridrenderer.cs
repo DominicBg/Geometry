@@ -14,7 +14,6 @@ public class Gridrenderer : MonoBehaviour {
     [SerializeField] bool showCols;
     [SerializeField] bool mirrorFlip;
 
-
     [Header("Twist")]
     [SerializeField] float twistFactor = 1;
     [SerializeField] AnimationCurve twistOverDistanceCurve;
@@ -42,7 +41,7 @@ public class Gridrenderer : MonoBehaviour {
     Mesh mesh;
 
     [SerializeField] bool generateMesh;
-
+    [SerializeField] bool realTimeCalculate;
     private void Start()
     {
         meshFilder = GetComponent<MeshFilter>();
@@ -80,10 +79,17 @@ public class Gridrenderer : MonoBehaviour {
 
     void Update()
     {
+        if(realTimeCalculate)
+            CalculateGrid();
+    }
+
+    [ContextMenu("Calculate Grid")]
+    void CalculateGrid()
+    {
         UpdateTwistOffset();
         UpdateTwirlMatrix();
         UpdateGrid();
-        if(generateMesh)
+        if (generateMesh)
             GenerateMesh();
     }
 
@@ -194,17 +200,21 @@ public class Gridrenderer : MonoBehaviour {
             }
         }
 
-        for (int y = 0; y < rows; y++)
+        for (int j = 0; j < rows; j++)
         {
-            for (int x = 0; x < cols; x++)
+            for (int i= 0; i< cols; i++)
             {
-                Vector3 vertex = new Vector3(x * scale, zPositionMatrix[x, y], y * scale);
+                float x = twirlMatrix[i, j].x * scale;
+                float y = twirlMatrix[i, j].y * scale;
+
+                Vector3 vertex = new Vector3(x + offset.x, zPositionMatrix[i, j], y + offset.y);
                 vertices.Add(vertex);
             }
         }
 
         mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
+        mesh.RecalculateNormals();
     }
 
     int GetIndexFromXY(int x, int y, int width)

@@ -7,7 +7,6 @@ public class PerlinCurvedGraph : PerlinGraph
     [SerializeField] float height;
     [SerializeField] float heightCubed;
 
-    //[SerializeField] float radius;
     [SerializeField] Vector2 middlePoint;
 
     [SerializeField] float diffFromMiddleToVoid;

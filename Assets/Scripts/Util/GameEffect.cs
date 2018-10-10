@@ -333,7 +333,7 @@ public static class GameMath
 	/// <summary>
 	/// Bounce between 0 and 1
 	/// </summary>
-	public static float Bounce(float t) //from Mathfx
+	public static float Bounce01(float t) //from Mathfx
 	{
 		return Mathf.Abs (Mathf.Sin (6.28f * (t + 1) * (t + 1)) * (1 - t));
 	}
@@ -375,33 +375,7 @@ public static class GameMath
 		
 		return false;
 	}
-	public static float Distance3D(GameObject object1,GameObject object2)
-	{
-		return Mathf.Sqrt
-			( 
-			 Mathf.Pow((object1.transform.position.x - object2.transform.position.x), 2) +
-			 Mathf.Pow((object1.transform.position.y - object2.transform.position.y), 2) +
-			 Mathf.Pow((object1.transform.position.z - object2.transform.position.z), 2)
-			 );
-	}
-	public static float Distance3D(Transform transform1,Transform transform2)
-	{
-		return Mathf.Sqrt
-			( 
-			 Mathf.Pow((transform1.position.x - transform2.position.x), 2) +
-			 Mathf.Pow((transform1.position.y - transform2.position.y), 2) +
-			 Mathf.Pow((transform1.position.z - transform2.position.z), 2)
-			 );
-	}
-	public static float Distance3D(Vector3 transform1,Vector3 transform2)
-	{
-		return Mathf.Sqrt
-			( 
-			 Mathf.Pow((transform1.x - transform2.x), 2) +
-			 Mathf.Pow((transform1.y - transform2.y), 2) +
-			 Mathf.Pow((transform1.z - transform2.z), 2)
-			 );
-	}
+
 	public static float DistanceXY(GameObject object1,GameObject object2)
 	{
 		return Mathf.Sqrt
