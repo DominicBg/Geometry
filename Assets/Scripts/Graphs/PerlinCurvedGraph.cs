@@ -7,20 +7,23 @@ public class PerlinCurvedGraph : PerlinGraph
     [SerializeField] float height;
     [SerializeField] float heightCubed;
 
-    [SerializeField] Vector2 middlePoint;
+    [SerializeField] Vector2 offset;
 
-    [SerializeField] float diffFromMiddleToVoid;
+    //[SerializeField] float diffFromMiddleToVoid;
     [SerializeField] float distanceToVoid;
-    [SerializeField] SinAnimationMinMax voidAnimation;
+    [SerializeField] SinAnimationMinMax diffFromMiddleToVoid;
 
     public override float CalculatePoint(float x, float y)
     {
+        x += offset.x;
+        y += offset.y;
+
         float point = base.CalculatePoint(x, y);
 
         float diffX = Mathf.Abs(middlePoint.x - x);
         float diffY = Mathf.Abs(middlePoint.y - y);
 
-        diffFromMiddleToVoid = voidAnimation.CalculateMinMax(); 
+       // diffFromMiddleToVoid = voidAnimation.CalculateMinMax(); 
 
         Vector2 diff = new Vector2(diffX ,diffY);
         Vector2 diffCubed = new Vector2(diffX * diffX, diffY * diffY);

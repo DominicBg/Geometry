@@ -165,11 +165,13 @@
     <Compile Include="Assets\Scripts\Util\Matrix.cs" />
     <Compile Include="Assets\Scripts\Util\Matrix4x4Extension.cs" />
     <Compile Include="Assets\Scripts\Util\MatrixVerticesGenerator.cs" />
+    <Compile Include="Assets\Scripts\Util\MeshGenerator.cs" />
     <Compile Include="Assets\Scripts\Util\Perlin.cs" />
     <Compile Include="Assets\Scripts\Util\PositionRandomiser.cs" />
     <Compile Include="Assets\Scripts\Util\RotateAround.cs" />
     <Compile Include="Assets\Scripts\Util\Rotating.cs" />
     <Compile Include="Assets\Scripts\Util\SinAnimation.cs" />
+    <Compile Include="Assets\Scripts\Util\TwirlGrid.cs" />
     <Compile Include="Assets\Scripts\Util\Vector234Extensions.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
