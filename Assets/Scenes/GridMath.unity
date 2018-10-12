@@ -1472,7 +1472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &66149930
 Transform:
   m_ObjectHideFlags: 0
@@ -10177,6 +10177,13 @@ MonoBehaviour:
   scale: 42
   lineRendererYoffset: 0.1
   offset: {x: 0, y: 0}
+  distanceFromCenter: 0
+  realRadius:
+    amplitude: 1
+    frequency: 1
+    offset: 0
+    min: 0
+    max: 1
   showRows: 1
   showCols: 1
   mirrorFlip: 0
@@ -10210,7 +10217,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    maxTwist: 45
+    maxTwist:
+      amplitude: 1
+      frequency: 1
+      offset: 0
+      min: 0
+      max: 1
     twistOffSet: {x: 0, y: 0}
     twistSinAmp: {x: 0, y: 0}
     twistSinFreq: {x: 0, y: 0}
@@ -24790,6 +24802,13 @@ MonoBehaviour:
   scale: 19.25
   lineRendererYoffset: 0.1
   offset: {x: 0, y: 0}
+  distanceFromCenter: 250
+  realRadius:
+    amplitude: 1
+    frequency: 0.3
+    offset: 0
+    min: 50
+    max: 1500
   showRows: 0
   showCols: 0
   mirrorFlip: 0
@@ -24798,18 +24817,41 @@ MonoBehaviour:
   lineRendererPrefab: {fileID: 1664634718}
   graph: {fileID: 668987726}
   twirlGrid:
-    twistFactor: 1
+    twistFactor: 1.5
     twistOverDistanceCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    maxTwist: 0
+    maxTwist:
+      amplitude: 1
+      frequency: 1
+      offset: 0
+      min: 180
+      max: 360
     twistOffSet: {x: 0, y: 0}
-    twistSinAmp: {x: 0, y: 0}
-    twistSinFreq: {x: 0, y: 0}
-    twistSinFreqOffset: {x: 0, y: 0}
+    twistSinAmp: {x: 5, y: 5}
+    twistSinFreq: {x: 1, y: 1}
+    twistSinFreqOffset: {x: 0, y: 90}
 --- !u!4 &668987730
 Transform:
   m_ObjectHideFlags: 0
@@ -47126,6 +47168,13 @@ MonoBehaviour:
   scale: 7
   lineRendererYoffset: 0.1
   offset: {x: 0, y: 0}
+  distanceFromCenter: 0
+  realRadius:
+    amplitude: 1
+    frequency: 1
+    offset: 0
+    min: 0
+    max: 1
   showRows: 1
   showCols: 1
   mirrorFlip: 0
@@ -47141,7 +47190,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    maxTwist: 0
+    maxTwist:
+      amplitude: 1
+      frequency: 1
+      offset: 0
+      min: 0
+      max: 1
     twistOffSet: {x: 0, y: 0}
     twistSinAmp: {x: 0, y: 0}
     twistSinFreq: {x: 0, y: 0}
@@ -47632,6 +47686,13 @@ MonoBehaviour:
   scale: 23.97
   lineRendererYoffset: 0
   offset: {x: 0, y: 0}
+  distanceFromCenter: 0
+  realRadius:
+    amplitude: 1
+    frequency: 1
+    offset: 0
+    min: 0
+    max: 1
   showRows: 1
   showCols: 1
   mirrorFlip: 0
@@ -47647,7 +47708,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    maxTwist: 0
+    maxTwist:
+      amplitude: 1
+      frequency: 1
+      offset: 0
+      min: 0
+      max: 1
     twistOffSet: {x: 0, y: 0}
     twistSinAmp: {x: 0, y: 0}
     twistSinFreq: {x: 0, y: 0}
@@ -49818,7 +49884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1289715503
 Transform:
   m_ObjectHideFlags: 0
@@ -65346,6 +65412,13 @@ MonoBehaviour:
   scale: 7
   lineRendererYoffset: 0.1
   offset: {x: 0, y: 0}
+  distanceFromCenter: 0
+  realRadius:
+    amplitude: 1
+    frequency: 1
+    offset: 0
+    min: 0
+    max: 1
   showRows: 0
   showCols: 0
   mirrorFlip: 0
@@ -65361,7 +65434,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    maxTwist: 0
+    maxTwist:
+      amplitude: 1
+      frequency: 1
+      offset: 0
+      min: 0
+      max: 1
     twistOffSet: {x: 0, y: 0}
     twistSinAmp: {x: 0, y: 0}
     twistSinFreq: {x: 0, y: 0}
@@ -76241,6 +76319,13 @@ MonoBehaviour:
   scale: 7
   lineRendererYoffset: 0.1
   offset: {x: 0, y: 0}
+  distanceFromCenter: 0
+  realRadius:
+    amplitude: 1
+    frequency: 1
+    offset: 0
+    min: 0
+    max: 1
   showRows: 1
   showCols: 1
   mirrorFlip: 0
@@ -76256,7 +76341,12 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    maxTwist: 0
+    maxTwist:
+      amplitude: 1
+      frequency: 1
+      offset: 0
+      min: 0
+      max: 1
     twistOffSet: {x: 0, y: 0}
     twistSinAmp: {x: 0, y: 0}
     twistSinFreq: {x: 0, y: 0}

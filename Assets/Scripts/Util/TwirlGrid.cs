@@ -9,7 +9,7 @@ public class TwirlGrid
     [Header("Twist")]
     [SerializeField] float twistFactor = 1;
     [SerializeField] AnimationCurve twistOverDistanceCurve;
-    [SerializeField] float maxTwist;
+    [SerializeField] AnimationFloat maxTwist;
 
     [Header("Twist anim")]
     [SerializeField] Vector2 twistOffSet;

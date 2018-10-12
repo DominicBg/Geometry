@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class MeshGenerator {
 
-    MeshFilter meshFilder;
+    MeshFilter meshFilter;
     Mesh mesh;
 
     public MeshGenerator(MeshFilter meshFilter)
     {
-        this.meshFilder = meshFilter;
-        meshFilder.mesh = new Mesh();
-        mesh = meshFilder.mesh;
+        this.meshFilter = meshFilter;
+        meshFilter.mesh = new Mesh();
+        mesh = meshFilter.mesh;
+    }
+
+    public void ShowMesh(bool show)
+    {
+        meshFilter.mesh = (show) ? mesh : null;
     }
 
     public void GenerateMesh(int rows, int cols, Vector3[,] points)

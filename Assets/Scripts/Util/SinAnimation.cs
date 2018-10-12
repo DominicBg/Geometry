@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SinAnimation  {
+public class AnimationFloatNormalized  {
     public float amplitude = 1;
     public float frequency = 1;
     public float offset = 0;
@@ -23,14 +23,14 @@ public class SinAnimation  {
     }
 
 
-    public static implicit operator float(SinAnimation sin)
+    public static implicit operator float(AnimationFloatNormalized sin)
     {
         return sin.Calculate();
     }
 }
 
 [System.Serializable]
-public class SinAnimationMinMax : SinAnimation
+public class AnimationFloat : AnimationFloatNormalized
 {
     public float min = 0;
     public float max = 1;
@@ -51,13 +51,13 @@ public class SinAnimationMinMax : SinAnimation
         return amplitude * Mathf.Lerp(min, max, currentT);
     }
 
-    public static implicit operator float(SinAnimationMinMax sin)
+    public static implicit operator float(AnimationFloat sin)
     {
         return sin.CalculateMinMax();
     }
 }
 [System.Serializable]
-public class LinearAnimationMinMax
+public class LinearAnimationFloat
 {
     public float min = 0;
     public float max = 1;
@@ -78,7 +78,7 @@ public class LinearAnimationMinMax
         return Mathf.Lerp(min, max, t);
     }
 
-    public static implicit operator float(LinearAnimationMinMax linearAnimation)
+    public static implicit operator float(LinearAnimationFloat linearAnimation)
     {
         return linearAnimation.CalculateMinMax();
     }

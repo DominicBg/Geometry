@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mushtrailroom : MonoBehaviour
 {
-    [SerializeField] SinAnimationMinMax heigthAnimation;
+    [SerializeField] AnimationFloat heigthAnimation;
     [SerializeField] AnimationCurve shroomCurve;
     [SerializeField] float radius;
     [SerializeField] Transform drawer;

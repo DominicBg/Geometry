@@ -11,7 +11,7 @@ public class PerlinCurvedGraph : PerlinGraph
 
     //[SerializeField] float diffFromMiddleToVoid;
     [SerializeField] float distanceToVoid;
-    [SerializeField] SinAnimationMinMax diffFromMiddleToVoid;
+    [SerializeField] AnimationFloat diffFromMiddleToVoid;
 
     public override float CalculatePoint(float x, float y)
     {
