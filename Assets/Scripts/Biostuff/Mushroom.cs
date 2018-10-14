@@ -6,7 +6,7 @@ public class Mushroom : MonoBehaviour {
 
     [SerializeField] int resolution;
     [SerializeField] AnimationCurve mushroomCurve;
-    [SerializeField] AnimationFloat heigthAnimation;
+    [SerializeField] SinFloat heigthAnimation;
     [SerializeField] float width;
     [SerializeField] bool inverseCurve;
     LineRenderer lineRender;

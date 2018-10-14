@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class AnimationFloatNormalized  {
-    public float amplitude = 1;
+public class SinFloatNormalized  {
     public float frequency = 1;
     public float offset = 0;
 
     public float Calculate(float timer)
     {
-        return amplitude * CalculateSin(timer);
+        return CalculateSin(timer);
     }
+
     public float Calculate()
     {
         return Calculate(Time.time);
@@ -22,15 +22,14 @@ public class AnimationFloatNormalized  {
         return Mathf.Sin(timer * frequency + offset * Mathf.Deg2Rad);
     }
 
-
-    public static implicit operator float(AnimationFloatNormalized sin)
+    public static implicit operator float(SinFloatNormalized sin)
     {
         return sin.Calculate();
     }
 }
 
 [System.Serializable]
-public class AnimationFloat : AnimationFloatNormalized
+public class SinFloat : SinFloatNormalized
 {
     public float min = 0;
     public float max = 1;
@@ -48,39 +47,65 @@ public class AnimationFloat : AnimationFloatNormalized
     public float CalculateMinMax(float timer)
     {
         currentT = (1 + CalculateSin(timer)) * .5f;
-        return amplitude * Mathf.Lerp(min, max, currentT);
+        return Mathf.Lerp(min, max, currentT);
     }
 
-    public static implicit operator float(AnimationFloat sin)
+    public static implicit operator float(SinFloat sin)
     {
         return sin.CalculateMinMax();
     }
 }
 [System.Serializable]
-public class LinearAnimationFloat
+public class LinearFloat
 {
     public float min = 0;
     public float max = 1;
     public float speed;
+    public float offset = 0;
+    public bool loop;
+
+
     public float currentT { get { return t; } }
 
     float t = 0;
     public float CalculateMinMax()
     {
-        return CalculateMinMax(Time.time);
+        return CalculateMinMax(Time.time + offset);
     }
 
     public float CalculateMinMax(float timer)
     {
-        t = (timer * speed) % 2;
+        if (loop)
+        {
+            t = (timer * speed) % 2;
+            t = (t > 1) ? 2 - t : t;
+        }
+        else
+        {
+            t = (timer * speed) % 1;
+        }
+        return CalculateLerp(t);
+    }
 
-        t = (t > 1) ? 2 - t : t;
+    protected virtual float CalculateLerp(float t)
+    {
         return Mathf.Lerp(min, max, t);
     }
 
-    public static implicit operator float(LinearAnimationFloat linearAnimation)
+    public static implicit operator float(LinearFloat linearAnimation)
     {
         return linearAnimation.CalculateMinMax();
+    }
+}
+
+[System.Serializable]
+public class CurvedFloat : LinearFloat
+{
+    public AnimationCurve curve;
+
+    protected override float CalculateLerp(float t)
+    {
+        return Mathf.Lerp(min, max, curve.Evaluate(t));
     }
 }
 

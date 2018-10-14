@@ -9,9 +9,9 @@ public class PhyllotaxisParticles : MonoBehaviour {
     [SerializeField] float sizeCurveScalar = 1;
     [SerializeField] AnimationCurve sizeCurve;
     [SerializeField] Gradient colorGradient;
-    [SerializeField] AnimationFloat particleScaleSin;
-    [SerializeField] AnimationFloat particleSizeSin;
-    [SerializeField] AnimationFloat particleAngleSin;
+    [SerializeField] SinFloat particleScaleSin;
+    [SerializeField] SinFloat particleSizeSin;
+    [SerializeField] SinFloat particleAngleSin;
 
     float angle = 137.5f;
     float scaling = 1;

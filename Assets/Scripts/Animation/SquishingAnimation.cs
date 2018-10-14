@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SquishingAnimation : MonoBehaviour {
 
-    [SerializeField] AnimationFloat animationSquish;
+    [SerializeField] SinFloat animationSquish;
 
     public void Update()
     {

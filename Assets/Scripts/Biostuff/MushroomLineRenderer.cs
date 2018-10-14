@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class MushroomLineRenderer : MonoBehaviour {
 
-    [SerializeField] LinearAnimationFloat heigthAnimation;
-    [SerializeField] AnimationFloat imperfectionAnimation;
+    [SerializeField] LinearFloat heigthAnimation;
+    [SerializeField] SinFloat imperfectionAnimation;
     [SerializeField] AnimationCurve shroomCurve;
     [SerializeField] float radius;
     [SerializeField] int resolution = 100;

@@ -433,19 +433,6 @@ public static class GameMath
         return Vector3.Cross(p2 - p1, p3 - p1).normalized;
     }
 
-    public static Vector2 RotateVector(float angle, Vector2 point)
-	{
-		float a = angle * Mathf.PI / 180;
-		float cosA = Mathf.Cos (a);
-		float sinA = Mathf.Sin (a);
-		Vector2 newPoint = 
-			new Vector2 (
-				(point.x * cosA - point.y * sinA),
-				(point.x * sinA + point.y * cosA)
-				);
-		return newPoint;
-	}
-	
     public static Vector2 PolarToCartesian(float radius, float theta)
     {
         float x = radius * Mathf.Cos(theta);
@@ -477,6 +464,32 @@ public static class GameMath
     public static Vector2 CartesianToPolar(float x, float y)
     {
         return CartesianToPolar(new Vector2(x,y));
+    }
+
+    public static Vector2 RotateVector(float angle, Vector2 point)
+    {
+        float a = angle * Mathf.PI / 180;
+        float cosA = Mathf.Cos(a);
+        float sinA = Mathf.Sin(a);
+        Vector2 newPoint =
+            new Vector2(
+                (point.x * cosA - point.y * sinA),
+                (point.x * sinA + point.y * cosA)
+                );
+        return newPoint;
+    }
+
+
+    public static Vector3 RotateVectorX(float angle, Vector3 point)
+    {
+        Vector2 vec = RotateVector(angle, new Vector2(point.z, point.y));
+        return new Vector3(point.x, vec.y, vec.x);
+    }
+
+    public static Vector3 RotateVectorZ(float angle, Vector3 point)
+    {
+        Vector2 vec = RotateVector(angle, new Vector2(point.x, point.y));
+        return new Vector3(vec.x, vec.y, point.z);
     }
 
     public static Vector3 RotateVectorY(float angle, Vector3 point)

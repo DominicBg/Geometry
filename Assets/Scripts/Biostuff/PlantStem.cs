@@ -7,7 +7,7 @@ public class PlantStem : MonoBehaviour {
 
     [SerializeField] Transform top;
     [SerializeField] int resolution;
-    [SerializeField] AnimationFloat stemLength;
+    [SerializeField] SinFloat stemLength;
     [SerializeField, Range(0, 1)] float ratioRandom = .9f;
     [SerializeField, Range(0, 1)] float ratioRandomAnimation = .99f;
     [SerializeField, Range(0, 1)] float upVectorInfluence = .1f;

@@ -11,7 +11,7 @@ public class Gridrenderer : MonoBehaviour {
     [SerializeField] float lineRendererYoffset = 1;
     [SerializeField] Vector2 offset;
     [SerializeField] float distanceFromCenter;
-    [SerializeField] AnimationFloat realRadius;
+    [SerializeField] SinFloat realRadius;
 
     [Header("Modes")]
     [SerializeField] bool showRows;

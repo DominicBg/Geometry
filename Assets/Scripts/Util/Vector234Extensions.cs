@@ -150,6 +150,31 @@ public static class Vector234Extensions
         list[i] = list[j];
         list[j] = temp;
     }
+
+    public static float SymmetricEvaluate(this AnimationCurve animationCurve, float t)
+    {
+        float t2 = t * 2;
+        return (t2 <= 1) ? animationCurve.Evaluate(t2) : animationCurve.Evaluate(2 - t2);
+    }
+
+    //Still need work
+    public static float SymmetricEvaluate(this AnimationCurve animationCurve, float t, float offset)
+    {
+        offset *= 2;
+
+        if (t <= offset)
+        {
+            t = t * (1 / offset);
+
+            return animationCurve.SymmetricEvaluate(t);
+        }
+        else
+        {
+            t = t * (1 / (1-offset));
+
+            return animationCurve.SymmetricEvaluate(t);
+        }
+    }
 }
 [System.Serializable]
 public struct Vector3Bool
