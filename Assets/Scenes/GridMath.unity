@@ -10179,7 +10179,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceFromCenter: 0
   realRadius:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -10218,7 +10217,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     maxTwist:
-      amplitude: 1
       frequency: 1
       offset: 0
       min: 0
@@ -10274,7 +10272,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceToVoid: 0
   diffFromMiddleToVoid:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -24739,7 +24736,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceToVoid: 0
   diffFromMiddleToVoid:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -24804,7 +24800,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceFromCenter: 250
   realRadius:
-    amplitude: 1
     frequency: 0.3
     offset: 0
     min: 50
@@ -24843,7 +24838,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     maxTwist:
-      amplitude: 1
       frequency: 1
       offset: 0
       min: 180
@@ -47077,7 +47071,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceToVoid: 2500
   diffFromMiddleToVoid:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -47170,7 +47163,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceFromCenter: 0
   realRadius:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -47191,7 +47183,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     maxTwist:
-      amplitude: 1
       frequency: 1
       offset: 0
       min: 0
@@ -47582,7 +47573,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceToVoid: 0
   diffFromMiddleToVoid:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -47688,7 +47678,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceFromCenter: 0
   realRadius:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -47709,7 +47698,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     maxTwist:
-      amplitude: 1
       frequency: 1
       offset: 0
       min: 0
@@ -65414,7 +65402,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceFromCenter: 0
   realRadius:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -65435,7 +65422,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     maxTwist:
-      amplitude: 1
       frequency: 1
       offset: 0
       min: 0
@@ -65558,7 +65544,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceToVoid: 0
   diffFromMiddleToVoid:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -76215,7 +76200,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceToVoid: 0
   diffFromMiddleToVoid:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -76321,7 +76305,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   distanceFromCenter: 0
   realRadius:
-    amplitude: 1
     frequency: 1
     offset: 0
     min: 0
@@ -76342,7 +76325,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     maxTwist:
-      amplitude: 1
       frequency: 1
       offset: 0
       min: 0

@@ -28,6 +28,7 @@ public class Gridrenderer : MonoBehaviour {
 
     float[,] zPositionMatrix;
     Vector3[,] positionMatrix;
+    Vector3[] vertices;
 
     [SerializeField] Graph graph;
     [SerializeField] TwirlGrid twirlGrid;
@@ -36,11 +37,14 @@ public class Gridrenderer : MonoBehaviour {
     private void Start()
     {
         meshGenerator = new MeshGenerator(GetComponent<MeshFilter>());
-        Initialize();
+        GenerateLineRenderers();
+
+        if (generateMesh)
+            meshGenerator.GenerateMesh(rows, cols);
     }
 
     [ContextMenu("Update")]
-    private void Initialize()
+    private void GenerateLineRenderers()
     {
         for (int i = 0; i < cols + rows; i++)
         {
@@ -76,7 +80,7 @@ public class Gridrenderer : MonoBehaviour {
             generateMesh = false;
         }
 
-            if (realTimeCalculate)
+        if (realTimeCalculate)
             CalculateGrid();
     }
 
@@ -91,13 +95,23 @@ public class Gridrenderer : MonoBehaviour {
 
         meshGenerator.ShowMesh(generateMesh);
         if (generateMesh)
-            meshGenerator.GenerateMesh(rows, cols, positionMatrix);
+            meshGenerator.SetVertices(vertices);
+        //    meshGenerator.GenerateMesh(rows, cols, positionMatrix, scale);
 
+    }
+
+    private void OnValidate()
+    {
+
+        if (Application.isPlaying && generateMesh)
+            meshGenerator.GenerateMesh(rows, cols);
     }
 
     void CalculateFinalGridPosition()
     {
-        positionMatrix = new Vector3[cols, rows];
+        positionMatrix = new Vector3[rows, cols];
+        vertices = new Vector3[cols * rows];
+
         for (int col = 0; col < cols; col++)
         {
             for (int row = 0; row < rows; row++)
@@ -110,6 +124,8 @@ public class Gridrenderer : MonoBehaviour {
                 {
                     positionMatrix[row, col] = positionMatrix[row, col].normalized * realRadius;
                 }
+
+                vertices[GameMath.GetIndexFromXY(row, col, cols)] = positionMatrix[row, col];
             }
         }
     }

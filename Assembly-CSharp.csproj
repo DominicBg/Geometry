@@ -151,6 +151,7 @@
     <Compile Include="Assets\Scripts\Flock\Boids.cs" />
     <Compile Include="Assets\Scripts\Flock\BoidsDome.cs" />
     <Compile Include="Assets\Scripts\Flock\Flock.cs" />
+    <Compile Include="Assets\Scripts\GPU\GPUPlane.cs" />
     <Compile Include="Assets\Scripts\Graphs\ChipsGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\CircularSea.cs" />
     <Compile Include="Assets\Scripts\Graphs\Graph.cs" />
@@ -217,6 +218,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
     <None Include="Assets\UETools\FX_Alpha_Textures\Readme.txt" />
+    <None Include="Assets\Scripts\GPU\ComputeShaderTest.compute" />
     <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
     <Reference Include="Unity.RenderPipelines.Core.Editor">

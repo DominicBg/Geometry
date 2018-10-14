@@ -19,24 +19,25 @@ public class MeshGenerator {
         meshFilter.mesh = (show) ? mesh : null;
     }
 
-    public void GenerateMesh(int rows, int cols, Vector3[,] points)
+    public void GenerateMesh(int rows, int cols) //, Vector3[,] points, float scale)
     {
-        List<Vector3> vertices = new List<Vector3>();
+       // List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
+        List<Vector2> uvs = new List<Vector2>();
 
         for (int y = 0; y < rows - 1; y++)
         {
             for (int x = 0; x < cols - 1; x++)
             {
                 //(x,y),  (x+1,y), (x, y+1) 
-                triangles.Add(GetIndexFromXY(x, y, cols));
-                triangles.Add(GetIndexFromXY(x, y + 1, cols));
-                triangles.Add(GetIndexFromXY(x + 1, y, cols));
+                triangles.Add(GameMath.GetIndexFromXY(x, y, cols));
+                triangles.Add(GameMath.GetIndexFromXY(x, y + 1, cols));
+                triangles.Add(GameMath.GetIndexFromXY(x + 1, y, cols));
 
                 //(x,y+1), (x+1, y), (x+1, y+1)
-                triangles.Add(GetIndexFromXY(x, y + 1, cols));
-                triangles.Add(GetIndexFromXY(x + 1, y + 1, cols));
-                triangles.Add(GetIndexFromXY(x + 1, y, cols));
+                triangles.Add(GameMath.GetIndexFromXY(x, y + 1, cols));
+                triangles.Add(GameMath.GetIndexFromXY(x + 1, y + 1, cols));
+                triangles.Add(GameMath.GetIndexFromXY(x + 1, y, cols));
             }
         }
 
@@ -48,18 +49,24 @@ public class MeshGenerator {
                 //float y = twirlGrid[row, col].y * scale;
 
                 //Vector3 vertex = new Vector3(x + offset.x, zPositionMatrix[row, col], y + offset.y);
-                vertices.Add(points[row,col]);
+                //vertices.Add(points[row, col]);
+                uvs.Add(new Vector2((float)row / rows, (float)col / cols));
             }
         }
         mesh.SetTriangles(new int[0], 0);
-        mesh.SetVertices(vertices);
+        //mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
-
-        mesh.RecalculateNormals();
+        mesh.SetUVs(0,uvs);
+        //mesh.RecalculateNormals();
     }
 
-    int GetIndexFromXY(int x, int y, int width)
+    public void SetVertices(Vector3[] points)
     {
-        return y * width + x;
+
+        mesh.vertices = points;
+        //mesh.SetVertices(points);
+
+        mesh.RecalculateNormals();
+
     }
 }

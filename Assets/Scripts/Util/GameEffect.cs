@@ -281,6 +281,23 @@ public static class GameMath
         return new Vector3(x, y, z);
     }
 
+    /// <summary>
+    /// A tester
+    /// </summary>
+    /// <param name="i"></param>
+    /// <param name="width"></param>
+    /// <returns></returns>
+    public static Vector2 GetXYFromIndex(int i, int width)
+    {
+        float x = (float)i % width;
+        float y = (float)i / width;
+        return new Vector2(x, y);
+    }
+
+    public static int GetIndexFromXY(int x, int y, int width)
+    {
+        return y * width + x;
+    }
     #region Curves
 
     public static float Stretch(float A, float stretchAmount)
