@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gridrenderer : MonoBehaviour {
+public class GridRenderer : MonoBehaviour {
 
     [Header("General")]
-    [SerializeField] int cols;
-    [SerializeField] int rows;
-    [SerializeField] float scale;
-    [SerializeField] float lineRendererYoffset = 1;
-    [SerializeField] Vector2 offset;
-    [SerializeField] float distanceFromCenter;
-    [SerializeField] SinFloat realRadius;
+    [SerializeField] protected int cols;
+    [SerializeField] protected int rows;
+    [SerializeField] protected float scale;
+    [SerializeField] protected float lineRendererYoffset = 1;
+    [SerializeField] protected Vector2 offset;
+    [SerializeField] protected float distanceFromCenter;
+    [SerializeField] protected float radius;
 
     [Header("Modes")]
-    [SerializeField] bool showRows;
-    [SerializeField] bool showCols;
-    [SerializeField] bool mirrorFlip;
-    [SerializeField] bool generateMesh;
-    [SerializeField] bool realTimeCalculate;
+    [SerializeField] protected bool showRows;
+    [SerializeField] protected bool showCols;
+    [SerializeField] protected bool mirrorFlip;
+    [SerializeField] protected bool generateMesh;
+    [SerializeField] protected bool realTimeCalculate;
 
     [Header("Prefabs")]
     [SerializeField] LineRenderer lineRendererPrefab;
@@ -39,6 +39,7 @@ public class Gridrenderer : MonoBehaviour {
         meshGenerator = new MeshGenerator(GetComponent<MeshFilter>());
         GenerateLineRenderers();
 
+        CalculateGrid();
         if (generateMesh)
             meshGenerator.GenerateMesh(rows, cols);
     }
@@ -67,18 +68,8 @@ public class Gridrenderer : MonoBehaviour {
         }
     }
 
-    void Update()
+    protected void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            showCols = showRows = false;
-            generateMesh = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            showCols = showRows = true;
-            generateMesh = false;
-        }
 
         if (realTimeCalculate)
             CalculateGrid();
@@ -94,16 +85,18 @@ public class Gridrenderer : MonoBehaviour {
         UpdateLineRenderers();
 
         meshGenerator.ShowMesh(generateMesh);
+
         if (generateMesh)
+        {
             meshGenerator.SetVertices(vertices);
+        }
         //    meshGenerator.GenerateMesh(rows, cols, positionMatrix, scale);
 
     }
 
     private void OnValidate()
     {
-
-        if (Application.isPlaying && generateMesh)
+        if (meshGenerator != null && generateMesh)
             meshGenerator.GenerateMesh(rows, cols);
     }
 
@@ -120,9 +113,9 @@ public class Gridrenderer : MonoBehaviour {
                 Vector3 newPosition = new Vector3(twirledPosition.x * scale, zPositionMatrix[row, col] + lineRendererYoffset, twirledPosition.y * scale);
                 positionMatrix[row, col] = newPosition + newPosition.normalized * distanceFromCenter;
 
-                if(positionMatrix[row, col].magnitude > realRadius)
+                if(positionMatrix[row, col].magnitude > radius)
                 {
-                    positionMatrix[row, col] = positionMatrix[row, col].normalized * realRadius;
+                    positionMatrix[row, col] = positionMatrix[row, col].normalized * radius;
                 }
 
                 vertices[GameMath.GetIndexFromXY(row, col, cols)] = positionMatrix[row, col];
@@ -145,7 +138,7 @@ public class Gridrenderer : MonoBehaviour {
         {
             for (int row = 0; row < rows; row++)
             {
-                zPositionMatrix[row, col] = graph.CalculatePoint((row + offset.x), (col + offset.y));
+                zPositionMatrix[row, col] = scale * graph.CalculatePoint((row + offset.x), (col + offset.y));
             }
         }
     }

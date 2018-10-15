@@ -1796,7 +1796,7 @@ MonoBehaviour:
   shakyshaky: 0
   speed: 0.5
   intervalTimeBetweenPoints: 0.02
-  maxTimer: 20
+  maxTimer: 5
 --- !u!96 &116043313
 TrailRenderer:
   serializedVersion: 2
@@ -2816,7 +2816,7 @@ MonoBehaviour:
   shakyshaky: 0
   speed: 0.5
   intervalTimeBetweenPoints: 0.02
-  maxTimer: 20
+  maxTimer: 5
 --- !u!96 &127634962
 TrailRenderer:
   serializedVersion: 2
@@ -3071,7 +3071,7 @@ MonoBehaviour:
   shakyshaky: 0
   speed: 0.5
   intervalTimeBetweenPoints: 0.02
-  maxTimer: 20
+  maxTimer: 5
 --- !u!96 &127999590
 TrailRenderer:
   serializedVersion: 2
@@ -9810,6 +9810,76 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!1 &381067578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100012, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045,
+    type: 2}
+  m_PrefabInternal: {fileID: 828300859}
+--- !u!114 &381067579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 381067578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74d36618048de14292e3214317252a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatePosition: 1
+  animateEulerAngles: 0
+  animateScale: 0
+  position:
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 10
+    startKeyCode: 32
+    min: {x: 0, y: -5, z: 0}
+    max: {x: 0, y: 25, z: 0}
+  eulerAngles:
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 0
+    startKeyCode: 32
+    min: {x: 0, y: 0, z: 0}
+    max: {x: 0, y: 0, z: 0}
+  scale:
+    curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    duration: 0
+    startKeyCode: 32
+    min: {x: 0, y: 0, z: 0}
+    max: {x: 0, y: 0, z: 0}
 --- !u!1 &384416438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9963,7 +10033,7 @@ MonoBehaviour:
   shakyshaky: 0
   speed: 0.5
   intervalTimeBetweenPoints: 0.02
-  maxTimer: 20
+  maxTimer: 5
 --- !u!96 &384416442
 TrailRenderer:
   serializedVersion: 2
@@ -10218,7 +10288,7 @@ MonoBehaviour:
   shakyshaky: 0
   speed: 0.5
   intervalTimeBetweenPoints: 0.02
-  maxTimer: 20
+  maxTimer: 5
 --- !u!96 &388139733
 TrailRenderer:
   serializedVersion: 2
@@ -13788,7 +13858,7 @@ MonoBehaviour:
   shakyshaky: 0
   speed: 0.5
   intervalTimeBetweenPoints: 0.02
-  maxTimer: 20
+  maxTimer: 5
 --- !u!96 &601147383
 TrailRenderer:
   serializedVersion: 2
@@ -19681,6 +19751,11 @@ Prefab:
     - target: {fileID: 400016, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114172093812518874, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81961fe9a4ba2ed479a4e1c3bd0fb045, type: 2}
@@ -38404,7 +38479,7 @@ MonoBehaviour:
   shakyshaky: 0
   speed: 0.5
   intervalTimeBetweenPoints: 0.02
-  maxTimer: 20
+  maxTimer: 5
 --- !u!96 &1872767328
 TrailRenderer:
   serializedVersion: 2
@@ -41097,7 +41172,7 @@ MonoBehaviour:
   shakyshaky: 0
   speed: 0.5
   intervalTimeBetweenPoints: 0.02
-  maxTimer: 20
+  maxTimer: 5
 --- !u!96 &1969934972
 TrailRenderer:
   serializedVersion: 2

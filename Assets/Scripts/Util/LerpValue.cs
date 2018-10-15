@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class LerpValue {
-    //public float min;
-    //public float max;
+
     public AnimationCurve curve;
     public float duration;
     public KeyCode startKeyCode = KeyCode.Space;
@@ -25,17 +24,6 @@ public abstract class LerpValue {
         if(state == State.Recording)
         {
             return Calculate(min, max);
-            //float value = Calculate(min, max);
-            //if(value > max)
-            //{
-            //    Debug.Log("End animation");
-            //    state = State.Finished;
-            //    return max;
-            //}
-            //else
-            //{
-            //    return value;
-            //}
         }
         else if(state == State.Finished)
         {

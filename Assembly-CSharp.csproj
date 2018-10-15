@@ -155,12 +155,14 @@
     <Compile Include="Assets\Scripts\Graphs\ChipsGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\CircularSea.cs" />
     <Compile Include="Assets\Scripts\Graphs\Graph.cs" />
-    <Compile Include="Assets\Scripts\Graphs\Gridrenderer.cs" />
+    <Compile Include="Assets\Scripts\Graphs\GridRenderer.cs" />
+    <Compile Include="Assets\Scripts\Graphs\GridRendererAnimation.cs" />
     <Compile Include="Assets\Scripts\Graphs\PerlinCurvedGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\PerlinGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\RippleGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\WaveGraph.cs" />
     <Compile Include="Assets\Scripts\Moon.cs" />
+    <Compile Include="Assets\Scripts\Util\AnimationTransform.cs" />
     <Compile Include="Assets\Scripts\Util\ForwardRotateAround.cs" />
     <Compile Include="Assets\Scripts\Util\GameEffect.cs" />
     <Compile Include="Assets\Scripts\Util\LerpValue.cs" />
