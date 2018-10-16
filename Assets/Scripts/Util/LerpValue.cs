@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class LerpValue {
-    //public float min;
-    //public float max;
+
     public AnimationCurve curve;
     public float duration;
     public KeyCode startKeyCode = KeyCode.Space;

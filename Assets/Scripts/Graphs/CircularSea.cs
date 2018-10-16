@@ -13,9 +13,10 @@ public class CircularSea : MonoBehaviour {
     [SerializeField] bool halfSphere;
 
     [Header("Theta animation")]
-    [SerializeField] float thetaSinFreq;
-    [SerializeField] float thetaSinMin;
-    [SerializeField] float thetaSinMax;
+    //[SerializeField] float thetaSinFreq;
+    //[SerializeField] float thetaSinMin;
+    //[SerializeField] float thetaSinMax;
+    [SerializeField] LerpFloat thetaOffset;
 
     [Header("Sin Animation")]
     [SerializeField] float sinAmplitude;
@@ -32,7 +33,7 @@ public class CircularSea : MonoBehaviour {
     
     float twoPi = Mathf.PI * 2;
     float halfPi = Mathf.PI * 0.5f;
-    float thetaOffset;
+   // float thetaOffset;
 
     void Start ()
     {
@@ -74,17 +75,17 @@ public class CircularSea : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        UpdateThetaOffset();
+       // UpdateThetaOffset();
         GenerateCircularPoints();
         UpdateLinePointPositions();
         UpdateLineRenderer();
     }
 
-    void UpdateThetaOffset()
-    {
-        float t = (Mathf.Sin(Time.time * thetaSinFreq) + 1) * 0.5f;
-        thetaOffset = Mathf.Lerp(thetaSinMin, thetaSinMax, t);
-    }
+    //void UpdateThetaOffset()
+    //{
+    //    float t = (Mathf.Sin(Time.time * thetaSinFreq) + 1) * 0.5f;
+    //    thetaOffset = Mathf.Lerp(thetaSinMin, thetaSinMax, t);
+    //}
 
     void UpdateLinePointPositions()
     {

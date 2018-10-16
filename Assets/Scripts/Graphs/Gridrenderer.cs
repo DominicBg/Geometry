@@ -2,23 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gridrenderer : MonoBehaviour {
+public class GridRenderer : MonoBehaviour {
 
     [Header("General")]
-    [SerializeField] int cols;
-    [SerializeField] int rows;
-    [SerializeField] float scale;
-    [SerializeField] float lineRendererYoffset = 1;
-    [SerializeField] Vector2 offset;
-    [SerializeField] LerpFloat distanceFromCenter;
-    [SerializeField] SinFloat realRadius;
+    [SerializeField] protected int cols;
+    [SerializeField] protected int rows;
+    [SerializeField] protected float scale;
+    [SerializeField] protected float lineRendererYoffset = 1;
+    [SerializeField] protected Vector2 offset;
+    [SerializeField] protected float distanceFromCenter;
+    [SerializeField] protected float radius;
 
     [Header("Modes")]
-    [SerializeField] bool showRows;
-    [SerializeField] bool showCols;
-    [SerializeField] bool mirrorFlip;
-    [SerializeField] bool generateMesh;
-    [SerializeField] bool realTimeCalculate;
+    [SerializeField] protected bool showRows;
+    [SerializeField] protected bool showCols;
+    [SerializeField] protected bool mirrorFlip;
+    [SerializeField] protected bool generateMesh;
+    [SerializeField] protected bool realTimeCalculate;
 
     [Header("Prefabs")]
     [SerializeField] LineRenderer lineRendererPrefab;
@@ -33,6 +33,9 @@ public class Gridrenderer : MonoBehaviour {
     [SerializeField] Graph graph;
     [SerializeField] TwirlGrid twirlGrid;
     [SerializeField] MeshGenerator meshGenerator;
+    [SerializeField] Transform followAtPoint;
+    [SerializeField] Vector2Int positionToFollow;
+    [SerializeField] Vector3 followOffset;
 
     private void Start()
     {
@@ -68,22 +71,15 @@ public class Gridrenderer : MonoBehaviour {
         }
     }
 
-    void Update()
+    protected void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            showCols = showRows = false;
-            generateMesh = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            showCols = showRows = true;
-            generateMesh = false;
-        }
 
         if (realTimeCalculate)
             CalculateGrid();
-    }
+
+        if(followAtPoint != null)
+            followAtPoint.position = positionMatrix[positionToFollow.x, positionToFollow.y] + followOffset;
+    }   
 
     [ContextMenu("Calculate Grid")]
     void CalculateGrid()
@@ -97,7 +93,10 @@ public class Gridrenderer : MonoBehaviour {
         meshGenerator.ShowMesh(generateMesh);
 
         if (generateMesh)
+        {
             meshGenerator.SetVertices(vertices);
+        }
+        //    meshGenerator.GenerateMesh(rows, cols, positionMatrix, scale);
 
     }
 
@@ -117,15 +116,15 @@ public class Gridrenderer : MonoBehaviour {
             for (int row = 0; row < rows; row++)
             {
                 Vector2 twirledPosition = twirlGrid[row, col];
-                Vector3 newPosition = new Vector3(twirledPosition.x * scale, zPositionMatrix[row, col] + lineRendererYoffset, twirledPosition.y * scale);
+                Vector3 newPosition = new Vector3(twirledPosition.x * scale, zPositionMatrix[row, col], twirledPosition.y * scale);
                 positionMatrix[row, col] = newPosition + newPosition.normalized * distanceFromCenter;
 
-                if(positionMatrix[row, col].magnitude > realRadius)
+                if(positionMatrix[row, col].magnitude > radius)
                 {
-                    positionMatrix[row, col] = positionMatrix[row, col].normalized * realRadius;
+                    positionMatrix[row, col] = positionMatrix[row, col].normalized * radius;
                 }
 
-                vertices[GameMath.GetIndexFromXY(col, row, cols)] = positionMatrix[row, col];
+                vertices[GameMath.GetIndexFromXY(row, col, cols)] = positionMatrix[row, col];
             }
         }
     }
@@ -141,8 +140,6 @@ public class Gridrenderer : MonoBehaviour {
         zPositionMatrix = new float[rows, cols];
 
         graph.SetMiddlePoint(new Vector2(rows / 2.0f, cols / 2.0f));
-        graph.SetScale(scale);
-
         for (int col = 0; col < cols; col++)
         {
             for (int row = 0; row < rows; row++)
@@ -174,7 +171,7 @@ public class Gridrenderer : MonoBehaviour {
                 int row2 = (invertedXY) ? col : row;
                 int col2 = (invertedXY) ? row : col;
 
-                lineRenderers[row].SetPosition(col, positionMatrix[row2, col2]);
+                lineRenderers[row].SetPosition(col, positionMatrix[row2, col2] + Vector3.up * lineRendererYoffset);
             }
         }
     }
