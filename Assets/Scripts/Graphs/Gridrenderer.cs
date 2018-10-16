@@ -10,7 +10,7 @@ public class Gridrenderer : MonoBehaviour {
     [SerializeField] float scale;
     [SerializeField] float lineRendererYoffset = 1;
     [SerializeField] Vector2 offset;
-    [SerializeField] float distanceFromCenter;
+    [SerializeField] LerpFloat distanceFromCenter;
     [SerializeField] SinFloat realRadius;
 
     [Header("Modes")]
@@ -39,6 +39,7 @@ public class Gridrenderer : MonoBehaviour {
         meshGenerator = new MeshGenerator(GetComponent<MeshFilter>());
         GenerateLineRenderers();
 
+        CalculateGrid();
         if (generateMesh)
             meshGenerator.GenerateMesh(rows, cols);
     }
@@ -94,16 +95,15 @@ public class Gridrenderer : MonoBehaviour {
         UpdateLineRenderers();
 
         meshGenerator.ShowMesh(generateMesh);
+
         if (generateMesh)
             meshGenerator.SetVertices(vertices);
-        //    meshGenerator.GenerateMesh(rows, cols, positionMatrix, scale);
 
     }
 
     private void OnValidate()
     {
-
-        if (Application.isPlaying && generateMesh)
+        if (meshGenerator != null && generateMesh)
             meshGenerator.GenerateMesh(rows, cols);
     }
 
@@ -125,7 +125,7 @@ public class Gridrenderer : MonoBehaviour {
                     positionMatrix[row, col] = positionMatrix[row, col].normalized * realRadius;
                 }
 
-                vertices[GameMath.GetIndexFromXY(row, col, cols)] = positionMatrix[row, col];
+                vertices[GameMath.GetIndexFromXY(col, row, cols)] = positionMatrix[row, col];
             }
         }
     }
@@ -141,6 +141,8 @@ public class Gridrenderer : MonoBehaviour {
         zPositionMatrix = new float[rows, cols];
 
         graph.SetMiddlePoint(new Vector2(rows / 2.0f, cols / 2.0f));
+        graph.SetScale(scale);
+
         for (int col = 0; col < cols; col++)
         {
             for (int row = 0; row < rows; row++)

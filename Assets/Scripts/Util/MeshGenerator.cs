@@ -19,9 +19,8 @@ public class MeshGenerator {
         meshFilter.mesh = (show) ? mesh : null;
     }
 
-    public void GenerateMesh(int rows, int cols) //, Vector3[,] points, float scale)
+    public void GenerateMesh(int rows, int cols)
     {
-       // List<Vector3> vertices = new List<Vector3>();
         List<int> triangles = new List<int>();
         List<Vector2> uvs = new List<Vector2>();
 
@@ -45,28 +44,17 @@ public class MeshGenerator {
         {
             for (int col = 0; col < cols; col++)
             {
-                //float x = twirlGrid[row, col].x * scale;
-                //float y = twirlGrid[row, col].y * scale;
-
-                //Vector3 vertex = new Vector3(x + offset.x, zPositionMatrix[row, col], y + offset.y);
-                //vertices.Add(points[row, col]);
                 uvs.Add(new Vector2((float)row / rows, (float)col / cols));
             }
         }
         mesh.SetTriangles(new int[0], 0);
-        //mesh.SetVertices(vertices);
         mesh.SetTriangles(triangles, 0);
         mesh.SetUVs(0,uvs);
-        //mesh.RecalculateNormals();
     }
 
     public void SetVertices(Vector3[] points)
     {
-
         mesh.vertices = points;
-        //mesh.SetVertices(points);
-
         mesh.RecalculateNormals();
-
     }
 }

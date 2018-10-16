@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class LerpValue {
     //public float min;
@@ -9,33 +10,31 @@ public abstract class LerpValue {
     public float duration;
     public KeyCode startKeyCode = KeyCode.Space;
 
+    public UnityEvent OnStartEvent = new UnityEvent();
+    public UnityEvent OnEndEvent = new UnityEvent();
+
     private float timeStart;
     enum State { Waiting, Recording, Finished};
 
     State state;
 
+    public void StartAnimation()
+    {
+        OnStartEvent.Invoke();
+        state = State.Recording;
+        timeStart = Time.time;
+    }
+
     protected float GetFloatValue(float min, float max)
     {
         if(Input.GetKeyDown(startKeyCode))
         {
-            state = State.Recording;
-            timeStart = Time.time;
+            StartAnimation();
         }
 
         if(state == State.Recording)
         {
             return Calculate(min, max);
-            //float value = Calculate(min, max);
-            //if(value > max)
-            //{
-            //    Debug.Log("End animation");
-            //    state = State.Finished;
-            //    return max;
-            //}
-            //else
-            //{
-            //    return value;
-            //}
         }
         else if(state == State.Finished)
         {
@@ -55,6 +54,7 @@ public abstract class LerpValue {
         if(t > 1)
         {
             Debug.Log("End animation");
+            OnEndEvent.Invoke();
             state = State.Finished;
             t = 1;
         }

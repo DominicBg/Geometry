@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PerlinCurvedGraph : PerlinGraph
 {
-    [SerializeField] float height;
-    [SerializeField] float heightCubed;
+    [SerializeField] LerpFloat height;
+    [SerializeField] LerpFloat heightCubed;
 
     [SerializeField] Vector2 offset;
 
     //[SerializeField] float diffFromMiddleToVoid;
     [SerializeField] float distanceToVoid;
     [SerializeField] SinFloat diffFromMiddleToVoid;
+    
 
     public override float CalculatePoint(float x, float y)
     {
@@ -31,10 +32,10 @@ public class PerlinCurvedGraph : PerlinGraph
         float value = point + heightCubed * diffCubed.magnitude + height * diff.magnitude;
 
         if (diff.magnitude < diffFromMiddleToVoid)
-            return value + distanceToVoid;
+            return scale * (value + distanceToVoid);
         //if (diffX < diffFromMiddleToVoid && diffY < diffFromMiddleToVoid)
         //    return value + distanceToVoid;
         else
-            return value;
+            return scale * (value);
     }
 }

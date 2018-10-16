@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class TwirlGrid
 {
-
     [Header("Twist")]
     [SerializeField] float twistFactor = 1;
     [SerializeField] AnimationCurve twistOverDistanceCurve;
