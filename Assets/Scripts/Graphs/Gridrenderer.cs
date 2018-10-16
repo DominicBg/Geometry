@@ -33,6 +33,9 @@ public class GridRenderer : MonoBehaviour {
     [SerializeField] Graph graph;
     [SerializeField] TwirlGrid twirlGrid;
     [SerializeField] MeshGenerator meshGenerator;
+    [SerializeField] Transform followAtPoint;
+    [SerializeField] Vector2Int positionToFollow;
+    [SerializeField] Vector3 followOffset;
 
     private void Start()
     {
@@ -73,7 +76,10 @@ public class GridRenderer : MonoBehaviour {
 
         if (realTimeCalculate)
             CalculateGrid();
-    }
+
+        if(followAtPoint != null)
+            followAtPoint.position = positionMatrix[positionToFollow.x, positionToFollow.y] + followOffset;
+    }   
 
     [ContextMenu("Calculate Grid")]
     void CalculateGrid()
@@ -110,7 +116,7 @@ public class GridRenderer : MonoBehaviour {
             for (int row = 0; row < rows; row++)
             {
                 Vector2 twirledPosition = twirlGrid[row, col];
-                Vector3 newPosition = new Vector3(twirledPosition.x * scale, zPositionMatrix[row, col] + lineRendererYoffset, twirledPosition.y * scale);
+                Vector3 newPosition = new Vector3(twirledPosition.x * scale, zPositionMatrix[row, col], twirledPosition.y * scale);
                 positionMatrix[row, col] = newPosition + newPosition.normalized * distanceFromCenter;
 
                 if(positionMatrix[row, col].magnitude > radius)
@@ -138,7 +144,7 @@ public class GridRenderer : MonoBehaviour {
         {
             for (int row = 0; row < rows; row++)
             {
-                zPositionMatrix[row, col] = scale * graph.CalculatePoint((row + offset.x), (col + offset.y));
+                zPositionMatrix[row, col] = graph.CalculatePoint((row + offset.x), (col + offset.y));
             }
         }
     }
@@ -165,7 +171,7 @@ public class GridRenderer : MonoBehaviour {
                 int row2 = (invertedXY) ? col : row;
                 int col2 = (invertedXY) ? row : col;
 
-                lineRenderers[row].SetPosition(col, positionMatrix[row2, col2]);
+                lineRenderers[row].SetPosition(col, positionMatrix[row2, col2] + Vector3.up * lineRendererYoffset);
             }
         }
     }
