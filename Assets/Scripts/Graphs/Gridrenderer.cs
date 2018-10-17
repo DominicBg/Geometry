@@ -33,9 +33,7 @@ public class GridRenderer : MonoBehaviour {
     [SerializeField] Graph graph;
     [SerializeField] TwirlGrid twirlGrid;
     [SerializeField] MeshGenerator meshGenerator;
-    [SerializeField] Transform followAtPoint;
-    [SerializeField] Vector2Int positionToFollow;
-    [SerializeField] Vector3 followOffset;
+    [SerializeField] VertexFollower[] vertiexFollowers;
 
     private void Start()
     {
@@ -77,8 +75,10 @@ public class GridRenderer : MonoBehaviour {
         if (realTimeCalculate)
             CalculateGrid();
 
-        if(followAtPoint != null)
-            followAtPoint.position = positionMatrix[positionToFollow.x, positionToFollow.y] + followOffset;
+        foreach(VertexFollower vertexFollower in vertiexFollowers)
+        {
+            vertexFollower.MakeTransformFollowVertex(positionMatrix);
+        }
     }   
 
     [ContextMenu("Calculate Grid")]
@@ -96,8 +96,6 @@ public class GridRenderer : MonoBehaviour {
         {
             meshGenerator.SetVertices(vertices);
         }
-        //    meshGenerator.GenerateMesh(rows, cols, positionMatrix, scale);
-
     }
 
     private void OnValidate()
@@ -115,13 +113,29 @@ public class GridRenderer : MonoBehaviour {
         {
             for (int row = 0; row < rows; row++)
             {
+                //Clamp position 
+                //Vector2 pos = new Vector2(row, col);
+                //Vector2 centerPoint = new Vector2(rows, cols) * 0.5f;
+                //Vector2 diff = (pos - centerPoint);
+                //if (Mathf.Ceil(diff.magnitude) > radius)
+                //{
+                //    pos = centerPoint + diff.normalized  * radius;
+                //}
+
+
+                //int realRow = Mathf.FloorToInt(pos.x);
+                //int realCol = Mathf.FloorToInt(pos.y);
+
+                //Vector2 twirledPosition = twirlGrid[realRow, realCol];
+                //Vector3 newPosition = new Vector3(twirledPosition.x * scale, zPositionMatrix[realRow, realCol], twirledPosition.y * scale);
+                //positionMatrix[row, col] = newPosition + newPosition.normalized * distanceFromCenter;
+
                 Vector2 twirledPosition = twirlGrid[row, col];
                 Vector3 newPosition = new Vector3(twirledPosition.x * scale, zPositionMatrix[row, col], twirledPosition.y * scale);
                 positionMatrix[row, col] = newPosition + newPosition.normalized * distanceFromCenter;
-
-                if(positionMatrix[row, col].magnitude > radius)
+                if (positionMatrix[row, col].magnitude > radius * scale)
                 {
-                    positionMatrix[row, col] = positionMatrix[row, col].normalized * radius;
+                    positionMatrix[row, col] = positionMatrix[row, col].normalized * radius * scale;
                 }
 
                 vertices[GameMath.GetIndexFromXY(row, col, cols)] = positionMatrix[row, col];
@@ -151,8 +165,8 @@ public class GridRenderer : MonoBehaviour {
 
     void SetLineRendererPosition(LineRenderer[] lineRenderers, bool invertedXY, bool show)
     {
-        int internalRows = rows;//(invertedXY) ? cols : rows;
-        int internalCols = cols;//(invertedXY) ? rows : cols;
+        int internalRows = rows;
+        int internalCols = cols;
    
         for (int row = 0; row < internalRows; row++)
         {
@@ -173,6 +187,19 @@ public class GridRenderer : MonoBehaviour {
 
                 lineRenderers[row].SetPosition(col, positionMatrix[row2, col2] + Vector3.up * lineRendererYoffset);
             }
+        }
+    }
+
+    [System.Serializable]
+    public class VertexFollower
+    {
+        [SerializeField] Transform transform;
+        [SerializeField] Vector2Int indexXY;
+        [SerializeField] Vector3 offset;
+
+        public void MakeTransformFollowVertex(Vector3[,] vertices)
+        {
+            transform.position = vertices[indexXY.x, indexXY.y] + offset;
         }
     }
 }

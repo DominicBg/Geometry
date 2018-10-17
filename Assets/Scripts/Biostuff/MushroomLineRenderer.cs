@@ -14,6 +14,7 @@ public class MushroomLineRenderer : MonoBehaviour {
     [SerializeField] float radiusCurveMultiplier;
     [SerializeField] bool recording = true;
     [SerializeField] float precalculationRatio = 0.02f;
+    [SerializeField, Range(0, 1)] float randomess;
     float theta;
 
     LineRenderer lineRenderer;
@@ -23,6 +24,13 @@ public class MushroomLineRenderer : MonoBehaviour {
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+
+        radius = radius.Randomise(randomess);
+        radius = radiusCurveMultiplier.Randomise(randomess);
+        radius = phiSpeed.Randomise(randomess);
+        imperfectionAnimation.min = imperfectionAnimation.min.Randomise(randomess);
+        imperfectionAnimation.max = imperfectionAnimation.min.Randomise(randomess);
+
     }
     // Update is called once per frame
     void Update()
@@ -32,6 +40,7 @@ public class MushroomLineRenderer : MonoBehaviour {
 
         GenerateTrail();
     }
+
 
     [ContextMenu("Precalculate")]
     public void Precalculate()

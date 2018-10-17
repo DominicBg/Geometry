@@ -14,26 +14,22 @@ public abstract class LerpValue {
 
     private float timeStart;
     enum State { Waiting, Recording, Finished};
-
     State state;
 
-    public void StartAnimation()
-    {
-        OnStartEvent.Invoke();
-        state = State.Recording;
-        timeStart = Time.time;
-    }
+    //Only Main value can invoke event
+    protected enum ValueType { Main, Secondary};
 
-    protected float GetFloatValue(float min, float max)
+
+    protected float GetFloatValue(float min, float max, ValueType valueType)
     {
-        if(Input.GetKeyDown(startKeyCode))
+        if (valueType == ValueType.Main && Input.GetKeyDown(startKeyCode))
         {
             StartAnimation();
         }
 
-        if(state == State.Recording)
+        if (state == State.Recording)
         {
-            return Calculate(min, max);
+            return Calculate(min, max, valueType);
         }
         else if(state == State.Finished)
         {
@@ -45,19 +41,32 @@ public abstract class LerpValue {
         }
     }
 
-    protected float Calculate(float min, float max)
+    protected float Calculate(float min, float max, ValueType valueType )
     {
         float timeRecording = Time.time - timeStart;
         float t = timeRecording / duration;
 
-        if(t > 1)
+        if(valueType == ValueType.Main && t > 1)
         {
-            Debug.Log("End animation");
-            OnEndEvent.Invoke();
-            state = State.Finished;
+            EndAnimation();
             t = 1;
         }
         return Mathf.Lerp(min, max, curve.Evaluate(t));
+    }
+
+    public void StartAnimation()
+    {
+        //Debug.Log("Start animation");
+        OnStartEvent.Invoke();
+        state = State.Recording;
+        timeStart = Time.time;
+    }
+
+    public void EndAnimation()
+    {
+        //Debug.Log("End animation");
+        OnEndEvent.Invoke();
+        state = State.Finished;
     }
 }
 
@@ -68,7 +77,7 @@ public class LerpFloat : LerpValue
     public float max;
     public static implicit operator float(LerpFloat lerpFloat)
     {
-        return lerpFloat.GetFloatValue(lerpFloat.min, lerpFloat.max);
+        return lerpFloat.GetFloatValue(lerpFloat.min, lerpFloat.max, ValueType.Main);
     }
 }
 
@@ -79,9 +88,9 @@ public class LerpVector3 : LerpValue
     public Vector3 max;
     public static implicit operator Vector3(LerpVector3 lerpVector3)
     {
-        float x = lerpVector3.GetFloatValue(lerpVector3.min.x, lerpVector3.max.x);
-        float y = lerpVector3.GetFloatValue(lerpVector3.min.y, lerpVector3.max.y);
-        float z = lerpVector3.GetFloatValue(lerpVector3.min.z, lerpVector3.max.z);
+        float x = lerpVector3.GetFloatValue(lerpVector3.min.x, lerpVector3.max.x, ValueType.Main);
+        float y = lerpVector3.GetFloatValue(lerpVector3.min.y, lerpVector3.max.y, ValueType.Secondary);
+        float z = lerpVector3.GetFloatValue(lerpVector3.min.z, lerpVector3.max.z, ValueType.Secondary);
         return new Vector3(x, y, z);
     }
 }

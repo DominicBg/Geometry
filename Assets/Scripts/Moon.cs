@@ -15,7 +15,7 @@ public class Moon : MonoBehaviour {
     [SerializeField] CurvedFloat fullMoonAnimation;
 
     [Header("rotation")]
-    [SerializeField] float degree;
+    [SerializeField] LerpFloat degree;
     [SerializeField] CurvedFloat rotationCurve;
     [SerializeField] float offsetGradient;
 

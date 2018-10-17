@@ -103,6 +103,12 @@ public static class Vector234Extensions
 			number = min;
 		return number;
 	}
+    public static float Randomise(this float value, float randomiseRatio)
+    {
+        float ratio = value * randomiseRatio;
+        return value + Random.Range(-ratio, ratio);
+    }
+
 	public static Transform FindHierarchyChild(this Transform tr, string name)
 	{
 		return RecursionFindHierarchyChild(tr,name);

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class GridRendererAnimation : GridRenderer {
     
-    [Header("animation value")]
-    [SerializeField] SinFloat radiusAnimation;
-
+ 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -20,7 +18,6 @@ public class GridRendererAnimation : GridRenderer {
             generateMesh = false;
         }
 
-        radius = radiusAnimation;
         base.Update();
     }
 }

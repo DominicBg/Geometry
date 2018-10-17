@@ -122,30 +122,30 @@ public class OutputSetup : MonoBehaviour {
 
 	void Update () {
 		
-		if (Input.GetKeyUp (KeyCode.Keypad1) || Input.GetKeyUp (KeyCode.Alpha1)) {
-			config = (OutputConfig)0;
-		}
+		//if (Input.GetKeyUp (KeyCode.Keypad1) || Input.GetKeyUp (KeyCode.Alpha1)) {
+		//	config = (OutputConfig)0;
+		//}
 		
-		if (Input.GetKeyUp (KeyCode.Keypad2) || Input.GetKeyUp (KeyCode.Alpha2)) {
-			config = (OutputConfig)1;
-		}
+		//if (Input.GetKeyUp (KeyCode.Keypad2) || Input.GetKeyUp (KeyCode.Alpha2)) {
+		//	config = (OutputConfig)1;
+		//}
 		
 		
-		if (Input.GetKeyUp (KeyCode.Keypad3) || Input.GetKeyUp (KeyCode.Alpha3)) {
-			config = (OutputConfig)2;
-		}
+		//if (Input.GetKeyUp (KeyCode.Keypad3) || Input.GetKeyUp (KeyCode.Alpha3)) {
+		//	config = (OutputConfig)2;
+		//}
 		
-		if (Input.GetKeyUp (KeyCode.Keypad4) || Input.GetKeyUp (KeyCode.Alpha4)) {
-			config = (OutputConfig)3;
-		}
+		//if (Input.GetKeyUp (KeyCode.Keypad4) || Input.GetKeyUp (KeyCode.Alpha4)) {
+		//	config = (OutputConfig)3;
+		//}
 		
-		if (Input.GetKeyUp (KeyCode.Keypad5) || Input.GetKeyUp (KeyCode.Alpha5)) {
-			config = (OutputConfig)4;
-		}
+		//if (Input.GetKeyUp (KeyCode.Keypad5) || Input.GetKeyUp (KeyCode.Alpha5)) {
+		//	config = (OutputConfig)4;
+		//}
 
-		if(config != currentConfig){
-			SwitchConfig(config);
-		}
+		//if(config != currentConfig){
+		//	SwitchConfig(config);
+		//}
 		
 		
 		/*

@@ -9,8 +9,8 @@ public class PlantStem : MonoBehaviour {
     [SerializeField] int resolution;
     [SerializeField] SinFloat stemLength;
     [SerializeField, Range(0, 1)] float ratioRandom = .9f;
-    [SerializeField, Range(0, 1)] float ratioRandomAnimation = .99f;
-    [SerializeField, Range(0, 1)] float upVectorInfluence = .1f;
+    [SerializeField] Vector3 influenceDirection = new Vector3(0,.1f,0);
+    [SerializeField] bool setDirectionTop;
     LineRenderer lineRenderer;
 
     Vector3 lastDirection;
@@ -31,6 +31,16 @@ public class PlantStem : MonoBehaviour {
         Start();
     }
 
+    void Update ()
+    {
+        //UpdateDirections();
+        CalculatePoisitions();
+        SetLastDirectionPosition();
+
+        SetPositions();
+        AlignTop();
+    }
+
     void CalculateStem()
     {
         CalculateDirections();
@@ -47,19 +57,19 @@ public class PlantStem : MonoBehaviour {
         }
     }
 
-    void UpdateDirections()
-    {
-        for (int i = 1; i < resolution; i++)
-        {
-            directions[i] = RandomiseDirection(directions[i], ratioRandomAnimation); ;
-        }
-    }
+    //void UpdateDirections()
+    //{
+    //    for (int i = 1; i < resolution; i++)
+    //    {
+    //        directions[i] = RandomiseDirection(directions[i], ratioRandomAnimation); ;
+    //    }
+    //}
 
     Vector3 RandomiseDirection(Vector3 direction, float randomness)
     {
         Vector3 partial = (randomness * direction);
         Vector3 random = ((1 - randomness) * Random.onUnitSphere);
-        Vector3 up = Vector3.up * upVectorInfluence;
+        Vector3 up = influenceDirection;
         return (partial + random + up).normalized;
     }
 
@@ -90,17 +100,10 @@ public class PlantStem : MonoBehaviour {
 
     void AlignTop()
     {
-        top.transform.position = lastPosition + transform.position;
-        top.transform.up = lastDirection;
+        top.transform.localPosition = lastPosition;
+
+        if(setDirectionTop)
+            top.transform.up = lastDirection;
     }
 
-    void Update ()
-    {
-        UpdateDirections();
-        CalculatePoisitions();
-        SetLastDirectionPosition();
-
-        SetPositions();
-        AlignTop();
-    }
 }

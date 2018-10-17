@@ -8,19 +8,22 @@ public class Flock : MonoBehaviour {
     public FlockMode flockMode;
     public float aquariumSize;
 
-    [SerializeField] int numberBoids;
+    [SerializeField] protected int numberBoids;
     [SerializeField] Boids boidsPrefab;
     [SerializeField] BoidsDome boidsDomePrefab;
 
     [SerializeField] float spawnRadius;
 
-    Dictionary<int, Boids> boidsDictionary = new Dictionary<int, Boids>();
+    protected Dictionary<int, Boids> boidsDictionary = new Dictionary<int, Boids>();
+    protected Boids[] boidsArray;
 
     [SerializeField] Transform boidsContainer;
     [SerializeField] Transform boidsDomeContainer;
 
-    private void Start()
+    protected void Start()
     {
+        boidsArray = new Boids[numberBoids];
+
         for (int i = 0; i < numberBoids; i++)
         {
             Vector3 startPos;
@@ -32,8 +35,9 @@ public class Flock : MonoBehaviour {
             Boids boids = Instantiate(boidsPrefab, startPos, Quaternion.identity);
             boids.transform.SetParent(boidsContainer);
             boidsDictionary.Add(boids.gameObject.GetInstanceID(), boids);
+            boidsArray[i] = boids;
 
-            if(flockMode == FlockMode.OnSphere)
+            if (flockMode == FlockMode.OnSphere)
             {
                 InstantiateBoidsDome(boids);
             }

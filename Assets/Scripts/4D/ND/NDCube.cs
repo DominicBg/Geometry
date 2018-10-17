@@ -10,11 +10,14 @@ public class NDCube : MonoBehaviour {
     public UnityEvent onFullRotation = new UnityEvent();
     public Gradient gradientOverDimensions;
 
+    public GameObject ConnectionNull { get; private set; }
+    public Vector2Int[] listRotationDimension;
+
     public int dimension;
     public float size = 10;
     [SerializeField] float lineSize = 1;
-    NDCube min1DimensionCubeLeft;
-    NDCube min1DimensionCubeRight;
+    public NDCube min1DimensionCubeLeft { get; private set; }
+    public NDCube min1DimensionCubeRight { get; private set; }
     NDCube root;
 
     Matrix verticesMatrix;
@@ -26,7 +29,6 @@ public class NDCube : MonoBehaviour {
     [SerializeField] NDimensionReader dimensionReader;
     [SerializeField] float speed;
     [SerializeField] LineGroup lineGroupPrefab;
-    public Vector2Int[] listRotationDimension; 
 
     float angle = 0;
     float TWOPI = Mathf.PI * 2;
@@ -38,8 +40,9 @@ public class NDCube : MonoBehaviour {
     }
 
     [ContextMenu("Generate N Cube")]
-    private void StartGeneration()
+    public void StartGeneration()
     {
+        Debug.Log("Start Generation");
         root = this;
         GenerateNCube(root);
         CalculateVerticesMatrix();
@@ -129,8 +132,6 @@ public class NDCube : MonoBehaviour {
         AddLowerDimensionVertices(min1DimensionCubeRight, 0.5f);
         Link2LowerDimensions();
         CollectLineGroups();
-
-        
     }
 
     NDCube GenerateLowerDimension()
@@ -144,6 +145,7 @@ public class NDCube : MonoBehaviour {
         GameObject lowerDimGo = new GameObject("Dimension" + lowerDimension);
         lowerDimGo.transform.SetParent(transform);
         lowerDimGo.transform.localPosition = Vector3.zero;
+        lowerDimGo.transform.localScale = Vector3.one;
 
         NDCube ncube = lowerDimGo.AddComponent<NDCube>();
         ncube.dimension = lowerDimension;
@@ -171,6 +173,8 @@ public class NDCube : MonoBehaviour {
         lineGroup.lineRenderer.endColor = GetColorByDimension();
 
         lineGroup.transform.localPosition = Vector3.zero;
+        lineGroup.transform.localScale = Vector3.one;
+
         lineGroup.indexTransform = new int[5];
         for (int i = 0; i < 4; i++)
         {
@@ -196,15 +200,18 @@ public class NDCube : MonoBehaviour {
 
     void Link2LowerDimensions()
     {
-        GameObject connectionNull = new GameObject("Connection Null");
-        connectionNull.transform.SetParent(transform);
-        connectionNull.transform.localPosition = Vector3.zero;
+        //GameObject connectionNull
+        ConnectionNull = new GameObject("Connection Null " + dimension);
+        ConnectionNull.transform.SetParent(transform);
+        ConnectionNull.transform.localPosition = Vector3.zero;
+        ConnectionNull.transform.localScale = Vector3.one;
 
         int min1Length = min1DimensionCubeLeft.vertices.Count;
         for (int i = 0; i < min1Length; i++)
         {
-            LineGroup lineGroup = Instantiate(root.lineGroupPrefab, connectionNull.transform);
+            LineGroup lineGroup = Instantiate(root.lineGroupPrefab, ConnectionNull.transform);
             lineGroup.transform.localPosition = Vector3.zero;
+            lineGroup.transform.localScale = Vector3.one;
 
             lineGroup.lineRenderer.startColor = GetColorByDimension();
             lineGroup.lineRenderer.endColor = GetColorByDimension();
