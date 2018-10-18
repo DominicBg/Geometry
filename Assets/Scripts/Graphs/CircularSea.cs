@@ -7,33 +7,30 @@ public class CircularSea : MonoBehaviour {
     LineRenderer lineRenderer;
 
     [Header("Settings")]
-    [SerializeField] float radius;
-    [SerializeField] int resolution;
-    [SerializeField] int numberOfLoop;
-    [SerializeField] bool halfSphere;
+    [SerializeField] protected float radius;
+    [SerializeField] protected int resolution;
+    [SerializeField] protected int numberOfLoop;
+    [SerializeField] protected bool halfSphere;
 
     [Header("Theta animation")]
-    //[SerializeField] float thetaSinFreq;
-    //[SerializeField] float thetaSinMin;
-    //[SerializeField] float thetaSinMax;
-    [SerializeField] LerpFloat thetaOffset;
+    [SerializeField] protected float thetaOffset;
 
     [Header("Sin Animation")]
-    [SerializeField] float sinAmplitude;
-    [SerializeField] float sinFrequency;
-    [SerializeField] float subSinAmplitude;
-    [SerializeField] float subsinFrequency;
+    [SerializeField] protected float sinAmplitude;
+    [SerializeField] protected float sinFrequency;
+    [SerializeField] protected float subSinAmplitude;
+    [SerializeField] protected float subsinFrequency;
 
-    [SerializeField] float diffVectorSin;
-    [SerializeField] Vector3 directionSin;
-    [SerializeField] float intervalX;
+    [SerializeField] protected float diffVectorSin;
+    [SerializeField] protected Vector3 directionSin;
+    [SerializeField] protected float intervalX;
+    [SerializeField] float speed;
 
     Vector3[] circularInitialPoints;
     Vector3[] circularPoints; 
     
     float twoPi = Mathf.PI * 2;
     float halfPi = Mathf.PI * 0.5f;
-   // float thetaOffset;
 
     void Start ()
     {
@@ -66,26 +63,12 @@ public class CircularSea : MonoBehaviour {
         lineRenderer.SetPositions(circularPoints);
     }
 
-    private void OnValidate()
+    protected void Update ()
     {
-        //if(lineRenderer != null)
-        //    GenerateCircularPoints();
-    }
-
-    // Update is called once per frame
-    void Update ()
-    {
-       // UpdateThetaOffset();
         GenerateCircularPoints();
         UpdateLinePointPositions();
         UpdateLineRenderer();
     }
-
-    //void UpdateThetaOffset()
-    //{
-    //    float t = (Mathf.Sin(Time.time * thetaSinFreq) + 1) * 0.5f;
-    //    thetaOffset = Mathf.Lerp(thetaSinMin, thetaSinMax, t);
-    //}
 
     void UpdateLinePointPositions()
     {
@@ -96,15 +79,10 @@ public class CircularSea : MonoBehaviour {
             Vector3 diffvector = (circularInitialPoints[i] - gameObject.transform.position).normalized * diffVectorSin;
             circularPoints[i] = circularInitialPoints[i] + (directionSin + diffvector) * CalculateVertexPosition(t * intervalX);
         }
-        //circularPoints[circularInitialPoints.Length] = circularPoints[0];
     }
 
     float CalculateVertexPosition(float x)
     {
-        return sinAmplitude* Mathf.Sin(Time.time + x * sinFrequency) + subSinAmplitude * Mathf.Sin(Time.time + x * subsinFrequency);
-        //return 0.257f * sinAmplitude * Mathf.Sin(Time.time + x * sinFrequency * 0.153f) -
-        //       0.103f * sinAmplitude * Mathf.Cos(Time.time + x * sinFrequency * 0.269f) +
-        //       0.951f * sinAmplitude * Mathf.Sin(Time.time + x * sinFrequency * 0.155f) -
-        //       0.887f * sinAmplitude * Mathf.Cos(Time.time + x * sinFrequency * 0.707f);
+        return sinAmplitude* Mathf.Sin(Time.time * speed + x * sinFrequency) + subSinAmplitude * Mathf.Sin(Time.time * speed + x * subsinFrequency);
     }
 }

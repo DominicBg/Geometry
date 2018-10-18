@@ -9,6 +9,7 @@ public class NDLineRendererController : MonoBehaviour {
     [SerializeField] KeyCode keyCodeShake;
     [SerializeField] float shakeIntensity;
     [SerializeField] float shakeDuration;
+    [SerializeField] float perlinSpeed;
 
     private void Start()
     {
@@ -21,7 +22,8 @@ public class NDLineRendererController : MonoBehaviour {
 
         if(Input.GetKeyDown(keyCodeShake))
         {
-            GameEffect.Shake(transform.gameObject, shakeIntensity, shakeDuration);
+            GameEffect.ShakeModeSetPerlin(true, perlinSpeed);
+            GameEffect.ShakeDynamic(transform.gameObject, shakeIntensity, shakeDuration);
         }
     }
 

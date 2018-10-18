@@ -5,8 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public static class GameEffect {
-	
-	#region SHAKE
+
+    #region SHAKE
+    static bool perlinMode;
+    static float perlinSpeed;
+
 	public static void Shake(GameObject obj)
 	{
 		ShakeEffect (obj, 1, .2f, Vector3.zero, false);
@@ -45,7 +48,11 @@ public static class GameEffect {
 		ShakeEffect (obj, intensity, time, rotation, true);
 	}
 
-
+    public static void ShakeModeSetPerlin(bool perlinModeOn, float speed)
+    {
+        perlinMode = perlinModeOn;
+        perlinSpeed = speed;
+    }
 
 	static void ShakeEffect(GameObject obj, float intensity, float time, Vector3 rotation, bool isDynamic)
 	{
@@ -54,6 +61,11 @@ public static class GameEffect {
             obj.AddComponent<_GEffect.ShakeClass>();
             _GEffect.ShakeClass shake = obj.GetComponent<_GEffect.ShakeClass>();
             shake.Init(intensity, time, rotation, isDynamic);
+
+            if(perlinMode)
+            {
+                shake.SetPerlinMode(perlinSpeed);
+            }
         }
 	}
 
@@ -496,7 +508,6 @@ public static class GameMath
         return newPoint;
     }
 
-
     public static Vector3 RotateVectorX(float angle, Vector3 point)
     {
         Vector2 vec = RotateVector(angle, new Vector2(point.z, point.y));
@@ -559,21 +570,33 @@ namespace _GEffect
 	public class ShakeClass : MonoBehaviour
 	{
 		float intensity;
-		float time;
+		float currentTime;
+        float time;
 		Vector3 rotation;
 		bool isDynamic;
 		bool isPerlinMode = false;
 		Vector3 originalPos;
 		Vector3 originalRotation;
-		float speedPerlin = 25f;
 
-		public void Init(float intensity, float time, Vector3 rotation, bool isDynamic)
+        Vector3 perlinSeeds;
+        float perlinSpeed;
+
+        public void SetPerlinMode(float speed)
+        {
+            isPerlinMode = true;
+            perlinSpeed = speed;
+        }
+
+        public void Init(float intensity, float time, Vector3 rotation, bool isDynamic)
 		{
 			this.intensity = intensity;
-			this.time = time;
+			this.currentTime = time;
+            this.time = time;
 			this.rotation = rotation;
 			this.isDynamic = isDynamic;
-		}
+
+            perlinSeeds = Random.insideUnitSphere * 50;
+        }
 		
 		void OnEnable()
 		{
@@ -591,27 +614,29 @@ namespace _GEffect
 
 		void LateUpdate()
 		{
-			if (time > 0)
+			if (currentTime > 0)
 			{
-				if(isPerlinMode)
+                float t = currentTime / time;
+                float currentIntensity = Mathf.Lerp(0, intensity, GameMath.Sigmoid01(t));
+
+                if (isPerlinMode)
 				{
 					transform.localEulerAngles = originalRotation + RandomRotationPerlin();
-					transform.localPosition = originalPos + RandomPerlinPosition() * intensity;
+					transform.localPosition = originalPos + RandomPerlinPosition() * currentIntensity;
 				}
 				else
 				{
 					transform.localEulerAngles = originalRotation + RandomRotation();
-					transform.localPosition = originalPos + Random.insideUnitSphere * intensity;
+					transform.localPosition = originalPos + Random.insideUnitSphere * currentIntensity;
 				}
 
-				time -= Time.deltaTime;
+                currentTime -= Time.deltaTime;
 			}
 			else
 			{
-				time = 0f;
+                currentTime = 0f;
 				transform.localPosition = originalPos;
 				transform.localEulerAngles = originalRotation;
-                intensity *= 0.95f;
 
                 Destroy(this);
 			}
@@ -619,11 +644,12 @@ namespace _GEffect
 
 		Vector3 RandomPerlinPosition()
 		{
-			float seed = speedPerlin * Time.time;
-			return new Vector3(
-				GameMath.PerlinNoiseNegOneToOne(seed, seed + 1),
-				GameMath.PerlinNoiseNegOneToOne(seed + 2, seed + 3),
-				GameMath.PerlinNoiseNegOneToOne(seed + 4, seed + 5)
+            perlinSeeds += Vector3.one * Time.deltaTime * perlinSpeed;
+
+            return new Vector3(
+                GameMath.PerlinNoiseNegOneToOne(perlinSeeds.x, perlinSeeds.y),
+                GameMath.PerlinNoiseNegOneToOne(perlinSeeds.x, perlinSeeds.z),
+                GameMath.PerlinNoiseNegOneToOne(perlinSeeds.y, perlinSeeds.z)
 				);
 		}
 
@@ -651,13 +677,9 @@ namespace _GEffect
 			}
 			else
 			{
-				float seed = speedPerlin * Time.time;
-				return new Vector3(
-					rotation.x = GameMath.PerlinNoiseNegOneToOne(seed, 0),
-					rotation.y = GameMath.PerlinNoiseNegOneToOne(seed + 15, 0),
-					rotation.z = GameMath.PerlinNoiseNegOneToOne(0, seed)
-					);
-			}
+                return RandomPerlinPosition();
+
+            }
 		}
 	}
 	

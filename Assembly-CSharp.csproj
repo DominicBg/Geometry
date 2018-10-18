@@ -158,6 +158,7 @@
     <Compile Include="Assets\Scripts\GPU\GPUPlane.cs" />
     <Compile Include="Assets\Scripts\Graphs\ChipsGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\CircularSea.cs" />
+    <Compile Include="Assets\Scripts\Graphs\CircularSeaController.cs" />
     <Compile Include="Assets\Scripts\Graphs\Graph.cs" />
     <Compile Include="Assets\Scripts\Graphs\Gridrenderer.cs" />
     <Compile Include="Assets\Scripts\Graphs\GridRendererAnimation.cs" />
