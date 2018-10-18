@@ -469,6 +469,7 @@ public static class GameMath
         return new Vector2(x, y);
     }
 
+
     /// <summary>
     /// </summary>
     /// <param name="radiusAndTheta">A Vector2 containing x = radius, y = theta</param>
@@ -525,10 +526,28 @@ public static class GameMath
 		Vector2 vec = RotateVector(angle,  new Vector2 (point.x, point.z));
 		return new Vector3 (vec.x, point.y, vec.y);
 	}
-	/// <summary>
-	/// Return the angle of two vectors from -180 to 180 degree
-	/// </summary>
-	public static float Angle(Vector3 from, Vector3 to)
+
+    public static Vector2 RandomRotateVector(Vector2 vector, float min, float max)
+    {
+        return RotateVector(Random.Range(min, max), vector);
+    }
+
+    public static Vector2 RandomRotateVectorX(Vector3 vector, float min, float max)
+    {
+        return RotateVectorX(Random.Range(min, max), vector);
+    }
+    public static Vector2 RandomRotateVectorY(Vector3 vector, float min, float max)
+    {
+        return RotateVectorY(Random.Range(min, max), vector);
+    }
+    public static Vector2 RandomRotateVectorZ(Vector3 vector, float min, float max)
+    {
+        return RotateVectorZ(Random.Range(min, max), vector);
+    }
+    /// <summary>
+    /// Return the angle of two vectors from -180 to 180 degree
+    /// </summary>
+    public static float Angle(Vector3 from, Vector3 to)
 	{
 		return (Vector3.Angle (from,to))* (-Mathf.Sign (Vector3.Cross (from, to).y));
 	}
