@@ -9,7 +9,6 @@ public enum OutputResolution{_3840x1080, _1920x2160, _2240x2240, OneCam_2240x224
 public class OutputSetup : MonoBehaviour {
 	
 	public OutputConfig config;
-	//public OutputAngle incline;
 	public OutputResolution resolution;
 	public int stitcherLayer;
 	public Camera stitcherCam_Back;
@@ -120,55 +119,7 @@ public class OutputSetup : MonoBehaviour {
 		SwitchConfig(config);
 	}
 
-	void Update () {
-		
-		//if (Input.GetKeyUp (KeyCode.Keypad1) || Input.GetKeyUp (KeyCode.Alpha1)) {
-		//	config = (OutputConfig)0;
-		//}
-		
-		//if (Input.GetKeyUp (KeyCode.Keypad2) || Input.GetKeyUp (KeyCode.Alpha2)) {
-		//	config = (OutputConfig)1;
-		//}
-		
-		
-		//if (Input.GetKeyUp (KeyCode.Keypad3) || Input.GetKeyUp (KeyCode.Alpha3)) {
-		//	config = (OutputConfig)2;
-		//}
-		
-		//if (Input.GetKeyUp (KeyCode.Keypad4) || Input.GetKeyUp (KeyCode.Alpha4)) {
-		//	config = (OutputConfig)3;
-		//}
-		
-		//if (Input.GetKeyUp (KeyCode.Keypad5) || Input.GetKeyUp (KeyCode.Alpha5)) {
-		//	config = (OutputConfig)4;
-		//}
 
-		//if(config != currentConfig){
-		//	SwitchConfig(config);
-		//}
-		
-		
-		/*
-		if (Input.GetKeyUp (KeyCode.Keypad4) || Input.GetKeyUp (KeyCode.Alpha4)) {
-			incline = (OutputAngle)0;
-		}
-		
-		if (Input.GetKeyUp (KeyCode.Keypad5) || Input.GetKeyUp (KeyCode.Alpha5)) {
-			incline = (OutputAngle)1;
-		}
-			
-		if (Input.GetKeyUp (KeyCode.Keypad6) || Input.GetKeyUp (KeyCode.Alpha6)) {
-			incline = (OutputAngle)2;
-		}
-		
-		
-		if(incline != currentIncline){
-			SwitchIncline(incline);
-		}
-		*/
-		
-	}
-	
 	//Switch between 180 210 and 230°
 	void SwitchConfig(OutputConfig c){
 		
@@ -176,7 +127,7 @@ public class OutputSetup : MonoBehaviour {
 		
 		switch(c){
 			case OutputConfig.dome_180:
-				camrig.transform.rotation=Quaternion.Euler(0,0,0);
+				//camrig.transform.rotation=Quaternion.Euler(0,0,0);
 				stitcher180_back.SetActive(true);
 				stitcher180_front.SetActive(true);
 				stitcher180_One.SetActive(true);
@@ -189,7 +140,7 @@ public class OutputSetup : MonoBehaviour {
 			break;
 				
 			case OutputConfig.dome_210:
-				camrig.transform.rotation=Quaternion.Euler(0,0,0);
+				//camrig.transform.rotation=Quaternion.Euler(0,0,0);
 				stitcher180_back.SetActive(false);
 				stitcher180_front.SetActive(false);
 				stitcher180_One.SetActive(false);
@@ -203,7 +154,7 @@ public class OutputSetup : MonoBehaviour {
 			break;
 				
 			case OutputConfig.dome_230:
-				camrig.transform.rotation=Quaternion.Euler(0,0,0);
+				//camrig.transform.rotation=Quaternion.Euler(0,0,0);
 				stitcher180_back.SetActive(false);
 				stitcher180_front.SetActive(false);
 				stitcher180_One.SetActive(false);
@@ -217,7 +168,7 @@ public class OutputSetup : MonoBehaviour {
 			break;
 			
 			case OutputConfig.dome_18015:
-				camrig.transform.rotation=Quaternion.Euler(0,0,0);
+				//camrig.transform.rotation=Quaternion.Euler(0,0,0);
 				stitcher180_back.SetActive(true);
 				stitcher180_front.SetActive(true);
 				stitcher180_One.SetActive(true);
@@ -231,7 +182,7 @@ public class OutputSetup : MonoBehaviour {
 			break;
 			
 			case OutputConfig.dome_18025:
-				camrig.transform.rotation=Quaternion.Euler(245,180,0);
+				//camrig.transform.rotation=Quaternion.Euler(245,180,0);
 				stitcher180_back.SetActive(true);
 				stitcher180_front.SetActive(true);
 				stitcher180_One.SetActive(true);
@@ -244,66 +195,6 @@ public class OutputSetup : MonoBehaviour {
 				
 			break;
 		}
-		
-		
-		
-		
 		currentConfig = c;
-	}
-	
-	
-	/*
-		//Switch between 180 210 and 230°
-	void SwitchIncline(OutputAngle a){
-		
-		Debug.Log("Switch Incline..");
-		
-		switch(a){
-			case OutputAngle.incline_0:
-				stitcher180_back.SetActiveRecursively(true);
-				stitcher180_front.SetActiveRecursively(true);
-				stitcher180_One.SetActiveRecursively(true);
-				stitcher210_back.SetActiveRecursively(false);
-				stitcher210_front.SetActiveRecursively(false);
-				stitcher210_One.SetActiveRecursively(false);
-				stitcher230_back.SetActiveRecursively(false);
-				stitcher230_front.SetActiveRecursively(false);
-				stitcher230_One.SetActiveRecursively(false);
-				camrig.transform.rotation=Quaternion.Euler(255,180,0);
-			break;
-			
-				
-			case OutputAngle.incline_15:
-				stitcher180_back.SetActiveRecursively(true);
-				stitcher180_front.SetActiveRecursively(true);
-				stitcher180_One.SetActiveRecursively(true);
-				stitcher210_back.SetActiveRecursively(false);
-				stitcher210_front.SetActiveRecursively(false);
-				stitcher210_One.SetActiveRecursively(false);
-				stitcher230_back.SetActiveRecursively(false);
-				stitcher230_front.SetActiveRecursively(false);
-				stitcher230_One.SetActiveRecursively(false);
-				camrig.transform.rotation=Quaternion.Euler(245,180,0);
-			break;
-			
-				
-			case OutputAngle.incline_25:
-				stitcher180_back.SetActiveRecursively(true);
-				stitcher180_front.SetActiveRecursively(true);
-				stitcher180_One.SetActiveRecursively(true);
-				stitcher210_back.SetActiveRecursively(false);
-				stitcher210_front.SetActiveRecursively(false);
-				stitcher210_One.SetActiveRecursively(false);
-				stitcher230_back.SetActiveRecursively(false);
-				stitcher230_front.SetActiveRecursively(false);
-				stitcher230_One.SetActiveRecursively(false);
-				camrig.transform.rotation=Quaternion.Euler(245,180,0);
-			break;
-		}
-		
-		currentIncline = a;
-	}
-	*/
-	
-	
+	}	
 }

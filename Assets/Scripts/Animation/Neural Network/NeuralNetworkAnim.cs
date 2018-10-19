@@ -10,6 +10,7 @@ public class NeuralNetworkAnim : MonoBehaviour {
 
     [Header("Settings")]
     [SerializeField] bool cylinderMode;
+    [SerializeField] float angle;
     [SerializeField] int[] layerDimension;
     [SerializeField] float timeBetweenNeuronConnection;
     [SerializeField] Vector2 scaling;
@@ -58,7 +59,7 @@ public class NeuralNetworkAnim : MonoBehaviour {
         if (cylinderMode)
         {
             float t = (float)x / (layerDimension.Length-1);
-            float lerped = Mathf.Lerp(0, Mathf.PI * 2, t);
+            float lerped = Mathf.Lerp(0, angle * Mathf.Deg2Rad, t);
             return GameMath.SphericalRotation(scaling.x, lerped, 0) + Vector3.up * y * scaling.y;
         }
         else

@@ -64,7 +64,6 @@ public class LinearFloat
     public float offset = 0;
     public bool loop;
 
-
     public float currentT { get { return t; } }
 
     float t = 0;

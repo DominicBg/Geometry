@@ -7,15 +7,35 @@ public class CameraController : MonoBehaviour {
     [SerializeField] float speed;
     [SerializeField] float mouseSensibility;
 
+    [SerializeField] GameObject[] cameras;
+    int currentCameraIndex = 0;
     // Update is called once per frame
     void Update ()
     {
         Move();
         AjustCamera();
+
+        InputSwitchCamera();
+    }
+
+    private void InputSwitchCamera()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            currentCameraIndex = (currentCameraIndex + 1) % cameras.Length;
+            foreach(GameObject camera in cameras)
+            {
+                camera.SetActive(false);
+            }
+            cameras[currentCameraIndex].SetActive(true);
+        }
     }
 
     private void AjustCamera()
     {
+        if (mouseSensibility == 0)
+            return;
+
         float x = Input.GetAxis("Mouse X");
         float y = Input.GetAxis("Mouse Y");
         Vector3 rotation = new Vector3(-y, x, 0);

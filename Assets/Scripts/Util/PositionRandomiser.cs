@@ -14,18 +14,19 @@ public class PositionRandomiser : MonoBehaviour {
     [SerializeField] float maxRadius;
 
     // Use this for initialization
+    [ContextMenu("Restart")]
     void Start() {
 
         Vector3 newPosition = transform.position;
-
-
-        if (useRadius) { 
+        
+        if (useRadius)
+        { 
             newPosition = Random.insideUnitSphere * maxRadius;
             if (newPosition.magnitude < minRadius)
                 newPosition = newPosition.normalized * minRadius;
         }
 
-        if(useRadius)
+        if(useMinMax)
         {
             newPosition = ClampedValue(newPosition, min, max);
         }
@@ -35,14 +36,12 @@ public class PositionRandomiser : MonoBehaviour {
 	
     Vector3 ClampedValue(Vector3 value, Vector3 min, Vector3 max)
     {
-        return new Vector3(
-            Mathf.Clamp(value.x, min.x, max.x),
-            Mathf.Clamp(value.y, min.y, max.y),
-            Mathf.Clamp(value.z, min.z, max.z));
+        float x = Random.Range(min.x, max.x);
+        float y = Random.Range(min.y, max.y);
+        float z = Random.Range(min.z, max.z);
+
+
+        return new Vector3(x, y, z);
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

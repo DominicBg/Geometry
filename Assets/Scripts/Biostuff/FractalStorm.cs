@@ -4,35 +4,70 @@ using UnityEngine;
 
 public class FractalStorm : MonoBehaviour {
 
+    FractalStormBranch mainBranch;
     List<FractalStormBranch> branches = new List<FractalStormBranch>();
 
     [SerializeField] float scale;
-    [SerializeField] int depth;
     // [SerializeField] AnimationCurve fadeOffCurve;
-    [SerializeField, Range(0,1)] float diminishFactorOverDepth;
+    [SerializeField, Range(0,2)] float lengthFactorOverDepth;
+    [SerializeField, Range(0, 2)] float angleFactorOverDepth;
+
     //[SerializeField] int maxForkPerBranch;
     [SerializeField] float totalAngle = 45;
     [SerializeField] int[] forkPerDepth;
     [SerializeField] FractalStormBranch fractalStormBranchPrefab;
+    [SerializeField] float offsetAngle;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField] Vector3 startDirection;
+    [SerializeField] Vector3 stormDirection;
+    // Use this for initialization
+    [SerializeField] Gradient gradientOverFork;
+
+    int depth
+    {
+        get { return forkPerDepth.Length; }
+    }
+
+
+    void Start () {
         GenerateLightning();
+        UpdateStorm();
+    }
 
-        foreach(FractalStormBranch branch in branches)
+    private void OnValidate()
+    {
+        if(mainBranch != null)
+            UpdateStorm();
+    }
+
+    private void UpdateStorm()
+    {
+        InitMainBranch();
+        RecursiveUpdate(mainBranch, 0);
+        foreach (FractalStormBranch branch in branches)
         {
             branch.SetLineRendererPositions();
         }
     }
-	
+
     void GenerateLightning()
     {
-        FractalStormBranch branch = InstantiateFractalStorm(transform);
-        branches.Add(branch);
-        branch.length = scale;
-        branch.vertices.Add(Vector3.zero);
-        branch.vertices.Add(Vector3.down * scale);
-        RecursiveGenerate(branch, 0);
+        mainBranch = InstantiateFractalStorm(transform);
+        branches.Add(mainBranch);
+
+        InitMainBranch();
+
+        RecursiveGenerate(mainBranch, 0);
+    }
+
+    void InitMainBranch()
+    {
+        mainBranch.length = scale;
+        mainBranch.direction = startDirection.normalized;
+        mainBranch.totalAngle = totalAngle;
+        mainBranch.vertices.Clear();
+        mainBranch.vertices.Add(Vector3.zero);
+        mainBranch.vertices.Add(stormDirection * scale);
     }
 
     FractalStormBranch InstantiateFractalStorm(Transform parent)
@@ -47,9 +82,6 @@ public class FractalStorm : MonoBehaviour {
         if (currentDepth >= depth)
             return;
 
-        //float ratioDepth = GetCurrentDepthRatio(currentDepth);
-
-        //int numberFork = Random.Range(0, maxForkPerBranch + 1);
         int numberFork = forkPerDepth[currentDepth];
 
         branch.childs = new FractalStormBranch[numberFork];
@@ -57,39 +89,41 @@ public class FractalStorm : MonoBehaviour {
         {
             branch.childs[i] = InstantiateFractalStorm(branch.transform);
             branches.Add(branch.childs[i]);
+            RecursiveGenerate(branch.childs[i], currentDepth + 1);
         }
+    }
+  
+    public void RecursiveUpdate(FractalStormBranch branch, int currentDepth)
+    {
+        if (currentDepth >= depth)
+            return;
 
-        //branch.vertices.Add(GameMath.RandomRotateVectorZ(Vector3.down * branch.length, -angles, angles));
+        float ratioDepth = (float)currentDepth / (depth - 1);
 
         for (int i = 0; i < branch.childs.Length; i++)
         {
             FractalStormBranch child = branch.childs[i];
+
+            child.vertices.Clear();
             child.vertices.AddRange(branch.vertices);
 
-            float ratio = (float)i / branch.childs.Length;
-            float angle = Mathf.Lerp(-totalAngle, totalAngle, ratio);
-            child.length = branch.length * diminishFactorOverDepth;
+            child.length = branch.length * lengthFactorOverDepth;
+            child.totalAngle = branch.totalAngle * angleFactorOverDepth;
 
-            child.vertices.Add(GameMath.RotateVectorZ(angle, Vector3.down * child.length));
-            //child.vertices.Add(GameMath.RandomRotateVectorZ(Vector3.down * branch.length, -angles, angles));
+            float ratio = (float)i / (branch.childs.Length-1);
+            float halfAngle = child.totalAngle * 0.5f ;
+            float angle = Mathf.Lerp((-halfAngle + offsetAngle), (halfAngle + offsetAngle), ratio);
 
-            RecursiveGenerate(child, currentDepth + 1);
+            Vector3 direction;
+            if (branch.childs.Length == 1)
+                direction = stormDirection * child.length;
+            else
+                direction = GameMath.RotateVectorY(angle, (branch.direction+stormDirection).normalized * child.length);
+
+            child.direction = direction;
+            child.SetColor(gradientOverFork.Evaluate(ratioDepth));
+            child.vertices.Add(branch.position + direction);
+            RecursiveUpdate(child, currentDepth + 1);
         }
     }
-  
-    //float GetCurrentDepthRatio(int currentDepth)
-    //{
-    //    float ratioDepth = (float)currentDepth / depth;
-    //    return fadeOffCurve.Evaluate(ratioDepth);
-    //}
-
-    //[System.Serializable]
-    //public class LightningBranch
-    //{
-    //    public float length;
-    //    public List<Vector3> vertices;
-
-    //    public LightningBranch[] childs;
-    //    public LineRenderer lineRenderer;
-    //}
 }

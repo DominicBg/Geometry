@@ -518,7 +518,7 @@ public static class GameMath
     public static Vector3 RotateVectorZ(float angle, Vector3 point)
     {
         Vector2 vec = RotateVector(angle, new Vector2(point.x, point.y));
-        return new Vector3(vec.x, vec.y, point.z);
+        return new Vector3(vec.y, vec.x, point.z);
     }
 
     public static Vector3 RotateVectorY(float angle, Vector3 point)
