@@ -803,6 +803,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     min: {x: 1, y: 0, z: 1}
     max: {x: 1, y: 1, z: 1}
+  animationToStartAtEnd: []
 --- !u!120 &120237523819987360
 LineRenderer:
   m_ObjectHideFlags: 1
