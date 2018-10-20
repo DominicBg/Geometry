@@ -7,27 +7,30 @@ public class FractalStorm : MonoBehaviour {
     FractalStormBranch mainBranch;
     List<FractalStormBranch> branches = new List<FractalStormBranch>();
 
-    [SerializeField] float scale;
-    // [SerializeField] AnimationCurve fadeOffCurve;
-    [SerializeField, Range(0,2)] float lengthFactorOverDepth;
-    [SerializeField, Range(0, 2)] float angleFactorOverDepth;
+    [Header("Scale and angles")]
+    [SerializeField] protected float scale;
+    [SerializeField] protected float totalAngle = 45;
+    [SerializeField] protected float offsetAngle;
 
-    //[SerializeField] int maxForkPerBranch;
-    [SerializeField] float totalAngle = 45;
-    [SerializeField] int[] forkPerDepth;
-    [SerializeField] FractalStormBranch fractalStormBranchPrefab;
-    [SerializeField] float offsetAngle;
+    [Header("Settings over depth")]
+    [SerializeField, Range(0,2)] protected float lengthFactorOverDepth;
+    [SerializeField, Range(0,2)] protected float angleFactorOverDepth;
 
+    [Header("Direction")]
     [SerializeField] Vector3 startDirection;
     [SerializeField] Vector3 stormDirection;
-    // Use this for initialization
+
+    [Header("Color")]
     [SerializeField] Gradient gradientOverFork;
+
+    [Header("Initial Settings")]
+    [SerializeField] int[] forkPerDepth;
+    [SerializeField] FractalStormBranch fractalStormBranchPrefab;
 
     int depth
     {
         get { return forkPerDepth.Length; }
     }
-
 
     void Start () {
         GenerateLightning();
@@ -40,7 +43,7 @@ public class FractalStorm : MonoBehaviour {
             UpdateStorm();
     }
 
-    private void UpdateStorm()
+    public void UpdateStorm()
     {
         InitMainBranch();
         RecursiveUpdate(mainBranch, 0);

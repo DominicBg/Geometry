@@ -11061,137 +11061,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d24109ae9201f1438d91a202e20ef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatePosition: 1
-  animationEulerAngle: 0
-  animateScale: 1
-  position:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    duration: 10
-    startKeyCode: 98
-    OnStartEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1209210869}
-          m_MethodName: StartGeneration
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    OnEndEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    min: {x: 0, y: 250, z: 0}
-    max: {x: 0, y: 50, z: 0}
-  eulerAngles:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    duration: 10
-    startKeyCode: 32
-    OnStartEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    OnEndEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    min: {x: 0, y: 0, z: 0}
-    max: {x: 1, y: 1, z: 1}
-  scale:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    duration: 10
-    startKeyCode: 98
-    OnStartEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    OnEndEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    min: {x: 0, y: 0, z: 0}
-    max: {x: 1, y: 1, z: 1}
 --- !u!114 &1209210872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11343,137 +11212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d24109ae9201f1438d91a202e20ef89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatePosition: 1
-  animationEulerAngle: 0
-  animateScale: 1
-  position:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    duration: 10
-    startKeyCode: 98
-    OnStartEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1314693330}
-          m_MethodName: StartGeneration
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    OnEndEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    min: {x: 0, y: 250, z: 0}
-    max: {x: 0, y: 50, z: 0}
-  eulerAngles:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    duration: 10
-    startKeyCode: 32
-    OnStartEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    OnEndEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    min: {x: 0, y: 0, z: 0}
-    max: {x: 1, y: 1, z: 1}
-  scale:
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    duration: 10
-    startKeyCode: 98
-    OnStartEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    OnEndEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    min: {x: 0, y: 0, z: 0}
-    max: {x: 1, y: 1, z: 1}
 --- !u!114 &1314693330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11645,11 +11383,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1397236638}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d24109ae9201f1438d91a202e20ef89, type: 3}
+  m_Script: {fileID: 11500000, guid: d74d36618048de14292e3214317252a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animatePosition: 1
-  animationEulerAngle: 0
+  animateEulerAngles: 0
   animateScale: 1
   position:
     curve:
@@ -11676,8 +11414,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    duration: 10
-    startKeyCode: 98
+    duration: 15
+    startKeyCode: 32
     OnStartEvent:
       m_PersistentCalls:
         m_Calls:
@@ -11699,34 +11437,16 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-    min: {x: 0, y: 250, z: 0}
-    max: {x: 0, y: 50, z: 0}
+    min: {x: 0, y: 1500, z: 0}
+    max: {x: 0, y: 100, z: 0}
   eulerAngles:
     curve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    duration: 10
+    duration: 0
     startKeyCode: 32
     OnStartEvent:
       m_PersistentCalls:
@@ -11738,8 +11458,8 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-    min: {x: 0, y: 0, z: 0}
-    max: {x: 1, y: 1, z: 1}
+    min: {x: -0, y: 0, z: 0}
+    max: {x: 0, y: 0, z: 0}
   scale:
     curve:
       serializedVersion: 2
@@ -11765,8 +11485,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    duration: 10
-    startKeyCode: 98
+    duration: 5
+    startKeyCode: 32
     OnStartEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -11779,6 +11499,7 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
     min: {x: 0, y: 0, z: 0}
     max: {x: 1, y: 1, z: 1}
+  animationToStartAtEnd: []
 --- !u!114 &1397236645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11838,8 +11559,8 @@ MonoBehaviour:
   listRotationDimension:
   - {x: 0, y: 1}
   dimension: 8
-  size: 10
-  lineSize: 0.5
+  size: 20
+  lineSize: 2
   rotationByDimension:
   - dimension: 3
     rotationAroundDimension: {x: 0, y: 2}

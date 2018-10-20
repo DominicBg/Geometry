@@ -146,6 +146,7 @@
     <Compile Include="Assets\Scripts\Animation\TwistPyramidController.cs" />
     <Compile Include="Assets\Scripts\Biostuff\FractalStorm.cs" />
     <Compile Include="Assets\Scripts\Biostuff\FractalStormBranch.cs" />
+    <Compile Include="Assets\Scripts\Biostuff\FractalStormController.cs" />
     <Compile Include="Assets\Scripts\Biostuff\Mushroom.cs" />
     <Compile Include="Assets\Scripts\Biostuff\MushroomLineRenderer.cs" />
     <Compile Include="Assets\Scripts\Biostuff\Mushtrailroom.cs" />

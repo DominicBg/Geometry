@@ -122,6 +122,8 @@ GameObject:
   m_Component:
   - component: {fileID: 320966790}
   - component: {fileID: 320966789}
+  - component: {fileID: 320966792}
+  - component: {fileID: 320966791}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -139,12 +141,12 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3.1415927
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -159,7 +161,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
+  m_LightShadowCasterMode: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
@@ -179,6 +181,88 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &320966791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 320966788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  shadowResolution: 512
+  shadowDimmer: 1
+  shadowFadeDistance: 10000
+  contactShadows: 0
+  viewBiasMin: 0.2
+  viewBiasMax: 100
+  viewBiasScale: 1
+  normalBiasMin: 0.5
+  normalBiasMax: 0.5
+  normalBiasScale: 1
+  sampleBiasScale: 0
+  edgeLeakFixup: 1
+  edgeToleranceNormal: 1
+  edgeTolerance: 1
+  shadowCascadeCount: 4
+  shadowCascadeRatios:
+  - 0.05
+  - 0.15
+  - 0.3
+  shadowCascadeBorders:
+  - 0
+  - 0
+  - 0
+  - 0.2
+  shadowAlgorithm: 0
+  shadowVariant: 3
+  shadowPrecision: 0
+  shadowData:
+    format: 0
+    data: 000000000000803f
+  shadowDatas:
+  - format: 0
+    data: 000000000000803f
+--- !u!114 &320966792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 320966788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1.1
+  directionalIntensity: 3.1415927
+  punctualIntensity: 600
+  areaIntensity: 200
+  enableSpotReflector: 0
+  m_InnerSpotPercent: 0
+  lightDimmer: 1
+  volumetricDimmer: 1
+  lightUnit: 2
+  fadeDistance: 10000
+  affectDiffuse: 1
+  affectSpecular: 1
+  nonLightmappedOnly: 0
+  lightTypeExtent: 0
+  spotLightShape: 0
+  shapeWidth: 0.5
+  shapeHeight: 0.5
+  aspectRatio: 1
+  shapeRadius: 0
+  maxSmoothness: 1
+  applyRangeAttenuation: 1
+  useOldInspector: 0
+  featuresFoldout: 1
+  showAdditionalSettings: 0
+  displayLightIntensity: 3.1415927
+  displayAreaLightEmissiveMesh: 0
 --- !u!1 &1148265903
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,13 +318,31 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 1
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.49584368
         value: 1
+        inSlope: -0.09589644
+        outSlope: -0.09589644
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.30043474
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -324,6 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1182419952}
   - component: {fileID: 1182419951}
+  - component: {fileID: 1182419953}
   m_Layer: 0
   m_Name: Storm
   m_TagString: Untagged
@@ -337,18 +440,16 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1182419950}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b6436e7113b3548bef0d544c1ebcf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scale: 11.7
+  totalAngle: 63.5
+  offsetAngle: 9
   lengthFactorOverDepth: 0.92
   angleFactorOverDepth: 0.88
-  totalAngle: 63.5
-  forkPerDepth: 020000000200000002000000020000000200000002000000020000000200000002000000020000000200000002000000
-  fractalStormBranchPrefab: {fileID: 1148265905}
-  offsetAngle: 9
   startDirection: {x: 0, y: 0, z: 0}
   stormDirection: {x: 1, y: 0, z: 0}
   gradientOverFork:
@@ -380,6 +481,8 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  forkPerDepth: 020000000200000002000000020000000200000002000000020000000200000002000000020000000200000002000000
+  fractalStormBranchPrefab: {fileID: 1148265905}
 --- !u!4 &1182419952
 Transform:
   m_ObjectHideFlags: 0
@@ -393,6 +496,75 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1182419953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1182419950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407b075bd4bef384a9d589219a865835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 8.21
+  totalAngle: 45.997395
+  offsetAngle: -14.33507
+  lengthFactorOverDepth: 0.90348077
+  angleFactorOverDepth: 0.85627675
+  startDirection: {x: 0, y: 0, z: 1}
+  stormDirection: {x: 0, y: 0, z: 1}
+  gradientOverFork:
+    serializedVersion: 2
+    key0: {r: 0.56078434, g: 1, b: 0.8725769, a: 1}
+    key1: {r: 0.46446037, g: 0, b: 1, a: 1}
+    key2: {r: 0, g: 0.36163378, b: 1, a: 0}
+    key3: {r: 0, g: 0.36163378, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 34310
+    ctime2: 57054
+    ctime3: 57054
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  forkPerDepth: 02000000020000000200000002000000020000000200000002000000020000000200000002000000
+  fractalStormBranchPrefab: {fileID: 1148265905}
+  totalAngle_anim:
+    frequency: 0.5
+    offset: 0
+    min: 45
+    max: 90
+  offsetAngle_anim:
+    frequency: 0.5
+    offset: 0
+    min: -15
+    max: 15
+  lengthFactorOverDepth_anim:
+    frequency: 2
+    offset: 0
+    min: 0.9
+    max: 1
+  angleFactorOverDepth_anim:
+    frequency: 1
+    offset: 0
+    min: 0.7
+    max: 0.9
 --- !u!1 &1305054051
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,8 +636,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1305054051}
-  m_LocalRotation: {x: 0.4930848, y: -0.5065903, z: 0.4872118, w: 0.51269716}
-  m_LocalPosition: {x: 42.786, y: 74.470245, z: -0.7062718}
+  m_LocalRotation: {x: 0.7071068, y: 0.000000059604645, z: -0.000000049360096, w: 0.7071068}
+  m_LocalPosition: {x: 0.5189153, y: 147.01677, z: 22.673607}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
