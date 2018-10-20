@@ -15,7 +15,7 @@ public class PositionRandomiser : MonoBehaviour {
 
     // Use this for initialization
     [ContextMenu("Restart")]
-    void Start() {
+    void Awake() {
 
         Vector3 newPosition = transform.position;
         

@@ -141,7 +141,6 @@
     <Compile Include="Assets\Scripts\Animation\SphereDraw.cs" />
     <Compile Include="Assets\Scripts\Animation\SpinningTriangle.cs" />
     <Compile Include="Assets\Scripts\Animation\SquishingAnimation.cs" />
-    <Compile Include="Assets\Scripts\Animation\TransformAnimation.cs" />
     <Compile Include="Assets\Scripts\Animation\TreeController.cs" />
     <Compile Include="Assets\Scripts\Animation\TwistPyramid.cs" />
     <Compile Include="Assets\Scripts\Animation\TwistPyramidController.cs" />
@@ -169,6 +168,7 @@
     <Compile Include="Assets\Scripts\Graphs\RippleGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\WaveGraph.cs" />
     <Compile Include="Assets\Scripts\Moon.cs" />
+    <Compile Include="Assets\Scripts\Util\AlignTransformChild.cs" />
     <Compile Include="Assets\Scripts\Util\AnimationTransform.cs" />
     <Compile Include="Assets\Scripts\Util\ForwardRotateAround.cs" />
     <Compile Include="Assets\Scripts\Util\GameEffect.cs" />

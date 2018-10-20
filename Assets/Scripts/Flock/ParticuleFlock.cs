@@ -18,7 +18,8 @@ public class ParticuleFlock : Flock {
 
     private void OnValidate()
     {
-        SpawnParticles();
+        if(particleSystem != null)
+            SpawnParticles();
     }
 
     [ContextMenu("Reload particles")]

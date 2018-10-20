@@ -32,7 +32,7 @@ public class Flock : MonoBehaviour {
             else
                 startPos = Random.insideUnitCircle * spawnRadius;
 
-            Boids boids = Instantiate(boidsPrefab, startPos, Quaternion.identity);
+            Boids boids = Instantiate(boidsPrefab, transform.position + startPos, Quaternion.identity);
             boids.transform.SetParent(boidsContainer);
             boidsDictionary.Add(boids.gameObject.GetInstanceID(), boids);
             boidsArray[i] = boids;

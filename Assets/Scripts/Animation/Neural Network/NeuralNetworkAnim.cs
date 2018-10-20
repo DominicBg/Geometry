@@ -43,11 +43,13 @@ public class NeuralNetworkAnim : MonoBehaviour {
             GameObject layer = new GameObject("Layer" + i);
             LayerNeuron layerNeuron = layer.AddComponent<LayerNeuron>();
             layer.transform.SetParent(transform);
+            layer.transform.localScale = Vector3.one;
 
             for (int j = 0; j < layerDimension[i]; j++)
             {
                 Neuron newNeuron = Instantiate(prefabNeuron, layer.transform);
-                newNeuron.transform.position = CalculateNeuronPosition(i, j, layerDimension[i]);
+                newNeuron.transform.localScale = Vector3.one;
+                newNeuron.transform.localPosition = CalculateNeuronPosition(i, j, layerDimension[i]);
             }
             layerNeuron.Initiate();
         }
@@ -93,7 +95,7 @@ public class NeuralNetworkAnim : MonoBehaviour {
         //On spawn autant de connection quia de neuron au previous layer
         Connection newConnection = Instantiate(prefabConnection, currentNeuron.transform);
         currentNeuron.incomingConnections[k] = newConnection;
-
+        newConnection.transform.localScale = Vector3.one;
         //On connect tous les neurons du previous layer au current neuron
         newConnection.from = previousLayer.neurons[k];
         newConnection.to = currentNeuron;
