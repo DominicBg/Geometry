@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1014624732568810}
+  m_IsPrefabAsset: 1
+--- !u!1 &1014624732568810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4007907628255622}
+  - component: {fileID: 114290135855917476}
+  - component: {fileID: 114786507784663626}
+  m_Layer: 0
+  m_Name: LightningStorm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4007907628255622
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014624732568810}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 168.84, y: 115.82, z: 150}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114290135855917476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014624732568810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e918d7346c6a94eb9cae6f527064b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scale: 4.88
+  totalAngle: 100
+  offsetAngle: 8.2
+  lengthFactorOverDepth: 1
+  angleFactorOverDepth: 0.55
+  startDirection: {x: 0, y: -1, z: 0}
+  stormDirection: {x: 0, y: -1, z: 0}
+  directionWeigth: 0.5
+  gradientOverFork:
+    serializedVersion: 2
+    key0: {r: 0, g: 0.07804253, b: 0.5955882, a: 1}
+    key1: {r: 0.67058825, g: 0.13333334, b: 0.6313726, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  depth: 0
+  reader: {fileID: 114786507784663626}
+  fractalStormBranchPrefab: {fileID: 114348784204546950, guid: bc353964b3ecd0c47a095e3f1b54d71f,
+    type: 2}
+  timeAtApex: 0.2
+  timeBetween: 1
+  iterationPerFrame: 15
+--- !u!114 &114786507784663626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014624732568810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39cc78d1367d8e64c98dadc3f6b19bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minFork: 1
+  maxFork: 2
+  forkCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0043296814
+      value: 0.98622894
+      inSlope: 0.15586016
+      outSlope: 0.15586016
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.30908918
+    - serializedVersion: 3
+      time: 0.9480591
+      value: 0.009174347
+      inSlope: -2.8607717
+      outSlope: -2.8607717
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08850217
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  noiseMin: 3
+  noiseMax: 25
+  noiseAmplitude: 45
+  noiseLength: 1
+  lengthRandomiser: 0.72

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FractalStormBranch : MonoBehaviour {
+public class FractalTreeBranch : MonoBehaviour {
 
     public Vector3 position { get { return vertices[vertices.Count - 1]; } }
     public float length;
@@ -10,7 +10,7 @@ public class FractalStormBranch : MonoBehaviour {
     public Vector3 direction;
     public List<Vector3> vertices;
 
-    public FractalStormBranch[] childs;
+    public FractalTreeBranch[] childs;
     LineRenderer lineRenderer;
 
     private void Awake()
