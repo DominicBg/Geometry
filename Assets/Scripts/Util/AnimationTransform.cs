@@ -12,10 +12,21 @@ public class AnimationTransform : MonoBehaviour {
 
     [SerializeField] AnimationTransform[] animationToStartAtEnd;
 
-    [ContextMenu("Set StartTransform")]
+    [ContextMenu("Set Start Transform")]
     public void SetStartTransform()
     {
         Update();
+    }
+    [ContextMenu("Set End Transform")]
+
+    public void SetEndTransform()
+    {
+        if(animatePosition)
+            transform.localPosition = position.max;
+        if(animateEulerAngles)
+            transform.localEulerAngles = eulerAngles.max;
+        if(animateScale)
+            transform.localScale = scale.max;
     }
 
     [ContextMenu("Save as Start Transform")]

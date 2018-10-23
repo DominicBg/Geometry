@@ -21,13 +21,13 @@ public class MushroomLineRenderer : MonoBehaviour {
     LinkedList<Vector3> trailPosition = new LinkedList<Vector3>();
     Vector3[] positions;
 
-    void Start()
+    void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
 
         radius = radius.Randomise(randomess);
-        radius = radiusCurveMultiplier.Randomise(randomess);
-        radius = phiSpeed.Randomise(randomess);
+        radiusCurveMultiplier = radiusCurveMultiplier.Randomise(randomess);
+        phiSpeed = phiSpeed.Randomise(randomess);
         imperfectionAnimation.min = imperfectionAnimation.min.Randomise(randomess);
         imperfectionAnimation.max = imperfectionAnimation.min.Randomise(randomess);
 

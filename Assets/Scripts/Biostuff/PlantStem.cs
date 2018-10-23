@@ -106,4 +106,8 @@ public class PlantStem : MonoBehaviour {
             top.transform.up = lastDirection;
     }
 
+    public void SetStemLenghtOffset(float offset)
+    {
+        stemLength.offset = offset;
+    }
 }
