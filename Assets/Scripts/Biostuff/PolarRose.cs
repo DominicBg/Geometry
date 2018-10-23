@@ -14,7 +14,10 @@ public class PolarRose : MonoBehaviour {
     [SerializeField] AnimationCurve curveSphere;
     LineRenderer lineRenderer;
     float HALFPI = Mathf.PI * 0.25f;
-
+    [SerializeField] float timer;
+    [SerializeField] LerpFloat speed;
+    [SerializeField] float zScalar = -1;
+    [SerializeField] bool inverseCurve;
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -23,8 +26,14 @@ public class PolarRose : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            timer = 0;
+        timer += Time.deltaTime * speed;
+
         lineRenderer.positionCount = resolution;
-        Vector3[] positions = GameMath.GetPolarRoseCoordinateVector3(n / d, radius, resolution, loops);
+        float realN = n.CalculateMinMax(timer);
+        float realLoops = loops.CalculateMinMax(timer);
+        Vector3[] positions = GameMath.GetPolarRoseCoordinateVector3(realN / d, radius, resolution, realLoops);
 
         if(mapSphere)
         {
@@ -40,10 +49,12 @@ public class PolarRose : MonoBehaviour {
         {
             float magnitude = positions[i].magnitude;
             float t = magnitude / radius;
-            float sinT = Mathf.Lerp(0, HALFPI, t);
-            // float z = -curveSphere.Evaluate(1-t) * radius;
-            float z = -Mathf.Cos(-sinT) * radius;
-            positions[i] = positions[i].SetZ(Mathf.Sin(z));
+            // sinT = Mathf.Lerp(0, HALFPI, t);
+            float z = curveSphere.Evaluate((inverseCurve) ? 1 - t : t) * radius;
+            //float z = -Mathf.Cos(-sinT) * radius;
+            //positions[i] = positions[i].SetZ(Mathf.Sin(z));
+            positions[i] = positions[i].SetZ(z * zScalar);
+
         }
     }
 }
