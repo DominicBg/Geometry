@@ -156,6 +156,7 @@
     <Compile Include="Assets\Scripts\Biostuff\Mushtrailroom.cs" />
     <Compile Include="Assets\Scripts\Biostuff\PhyllotaxisParticles.cs" />
     <Compile Include="Assets\Scripts\Biostuff\PlantStem.cs" />
+    <Compile Include="Assets\Scripts\Biostuff\PolarRose.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Flock\Boids.cs" />
     <Compile Include="Assets\Scripts\Flock\BoidsDome.cs" />

@@ -13,6 +13,12 @@ public class Lightning : FractalTree
     [SerializeField] int iterationPerFrame = 5;
 
     float currentTimer = 0;
+
+    private void Update()
+    {
+        AnimateLightning();
+    }
+
     void AnimateLightning()
     {
         for (int i = 0; i < iterationPerFrame; i++)

@@ -152,6 +152,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1312242243994618, guid: bc353964b3ecd0c47a095e3f1b54d71f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc353964b3ecd0c47a095e3f1b54d71f, type: 2}
   m_IsPrefabAsset: 0
@@ -444,7 +448,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   depth: 8
   reader: {fileID: 1417920101}
-  fractalStormBranchPrefab: {fileID: 1148265905}
+  fractalStormBranchPrefab: {fileID: 114348784204546950, guid: bc353964b3ecd0c47a095e3f1b54d71f,
+    type: 2}
   totalAngle_anim:
     frequency: 0.5
     offset: 0

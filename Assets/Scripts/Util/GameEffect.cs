@@ -544,6 +544,44 @@ public static class GameMath
     {
         return RotateVectorZ(Random.Range(min, max), vector);
     }
+    public static Vector2 PolarRose(float theta, float k, float radius)
+    {
+        float r = radius * Mathf.Cos(k * theta);
+        float x = r * Mathf.Cos(theta);
+        float y = r * Mathf.Sin(theta);
+        return new Vector2(x, y);
+    }
+    public static Vector2[] GetPolarRoseCoordinate(float k, float radius, int resolution)
+    {
+        return GetPolarRoseCoordinate(k, radius, resolution, 1);
+    }
+    public static Vector2[] GetPolarRoseCoordinate(float k, float radius, int resolution, float numberLoop)
+    {
+        Vector2[] points = new Vector2[resolution];
+        for (int i = 0; i < resolution; i++)
+        {
+            float t =  (float)i / (resolution-1);
+            float theta = Mathf.Lerp(0, Mathf.PI * 2 * numberLoop, t);
+            points[i] = PolarRose(theta, k, radius);
+        }
+        return points;
+    }
+
+    public static Vector3[] GetPolarRoseCoordinateVector3(float k, float radius, int resolution)
+    {
+        return GetPolarRoseCoordinateVector3(k, radius, resolution, 1);
+    }
+
+    public static Vector3[] GetPolarRoseCoordinateVector3(float k, float radius, int resolution, float numberLoop)
+    {
+        Vector2[] points = GetPolarRoseCoordinate(k, radius, resolution, numberLoop);
+        Vector3[] points3 = new Vector3[resolution];
+        for (int i = 0; i < points3.Length; i++)
+        {
+            points3[i] = points[i];
+        }
+        return points3;
+    }
     /// <summary>
     /// Return the angle of two vectors from -180 to 180 degree
     /// </summary>
