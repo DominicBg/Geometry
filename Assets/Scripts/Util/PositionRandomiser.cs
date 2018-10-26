@@ -14,9 +14,14 @@ public class PositionRandomiser : MonoBehaviour {
     [SerializeField] float maxRadius;
 
     // Use this for initialization
-    [ContextMenu("Restart")]
-    void Awake() {
+    private void Awake()
+    {
+        RandomPosition();
+    }
 
+    [ContextMenu("Random Position")]
+    public void RandomPosition()
+    {
         Vector3 newPosition = transform.position;
         
         if (useRadius)

@@ -30,7 +30,7 @@ public class FractalTree : MonoBehaviour {
     [SerializeField] FractalTreeReader reader;
     [SerializeField] FractalTreeBranch fractalStormBranchPrefab;
 
-    void Start () {
+    public void Start () {
         GenerateLightning();
         UpdateStorm();
     }
