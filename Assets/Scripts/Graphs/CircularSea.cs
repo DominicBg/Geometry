@@ -63,6 +63,13 @@ public class CircularSea : MonoBehaviour {
         lineRenderer.SetPositions(circularPoints);
     }
 
+    private void OnValidate()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+
+        Update();
+    }
+
     protected void Update ()
     {
         GenerateCircularPoints();

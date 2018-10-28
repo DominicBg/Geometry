@@ -159,6 +159,11 @@
     <Compile Include="Assets\Scripts\Biostuff\PolarRose.cs" />
     <Compile Include="Assets\Scripts\Biostuff\StemOffsetController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\CamRigSetup.cs" />
+    <Compile Include="Assets\Scripts\CreateCam.cs" />
+    <Compile Include="Assets\Scripts\CubemapRender.cs" />
+    <Compile Include="Assets\Scripts\DomeController.cs" />
+    <Compile Include="Assets\Scripts\DomeProjection.cs" />
     <Compile Include="Assets\Scripts\Flock\Boids.cs" />
     <Compile Include="Assets\Scripts\Flock\BoidsDome.cs" />
     <Compile Include="Assets\Scripts\Flock\Flock.cs" />
@@ -187,6 +192,7 @@
     <Compile Include="Assets\Scripts\Util\MeshGenerator.cs" />
     <Compile Include="Assets\Scripts\Util\Perlin.cs" />
     <Compile Include="Assets\Scripts\Util\PositionRandomiser.cs" />
+    <Compile Include="Assets\Scripts\Util\RandomFloat.cs" />
     <Compile Include="Assets\Scripts\Util\RotateAround.cs" />
     <Compile Include="Assets\Scripts\Util\Rotating.cs" />
     <Compile Include="Assets\Scripts\Util\SinAnimation.cs" />
@@ -196,6 +202,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
+    <None Include="Assets\Resources\DomeProjection.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\LutGen.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
