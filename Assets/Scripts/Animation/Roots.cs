@@ -29,24 +29,20 @@ public class Roots : MonoBehaviour {
 
     List<Vector3> positions = new List<Vector3>();
     LineRenderer lineRenderer;
-    TrailRenderer trail;
+    
     Vector3 lastPos;
 
     [ContextMenu("Reset Timer")]
     public void ResetTimer()
     {
         timer = 0;
-        //trail.SetPositions(new Vector3[0]);
         positions = new List<Vector3>();
-        //trail.enabled = false;
     }
 
 
     private void Start()
     {
-        trail = GetComponent<TrailRenderer>();
         lineRenderer = GetComponent<LineRenderer>();
-        trail.enabled = false;
     }
 
     private void Update()
@@ -72,7 +68,6 @@ public class Roots : MonoBehaviour {
         Vector3 newPosition = CalculatePositionSpherical();
         //transform.localPosition = newPosition;
         positions.Add(newPosition);
-        //trail.enabled = true;
     }
 
     private Vector3 CalculatePositionSpherical()

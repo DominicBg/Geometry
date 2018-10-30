@@ -13,6 +13,15 @@ public class RootsController : MonoBehaviour {
         CalculateOffset();
     }
 
+    [ContextMenu("reset timers")]
+    public void ResetTimers()
+    {
+        foreach (Roots root in roots)
+        {
+            root.ResetTimer();
+        }
+    }
+
     [ContextMenu("Calculate offset")]
     public void CalculateOffset()
     {
