@@ -170,6 +170,7 @@
     <Compile Include="Assets\Scripts\GPU\GPUPlane.cs" />
     <Compile Include="Assets\Scripts\Graphs\ChipsGraph.cs" />
     <Compile Include="Assets\Scripts\Graphs\CircularSea.cs" />
+    <Compile Include="Assets\Scripts\Graphs\CircularSeaAnimation.cs" />
     <Compile Include="Assets\Scripts\Graphs\CircularSeaController.cs" />
     <Compile Include="Assets\Scripts\Graphs\Graph.cs" />
     <Compile Include="Assets\Scripts\Graphs\Gridrenderer.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Assets\Scripts\Util\TestRotation.cs" />
     <Compile Include="Assets\Scripts\Util\TwirlGrid.cs" />
     <Compile Include="Assets\Scripts\Util\Vector234Extensions.cs" />
+    <None Include="Assets\FFmpegOut\Resources\Preprocess.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
@@ -207,6 +209,7 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\LutGen.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
+    <None Include="Assets\FFmpegOut\Resources\Blitter.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\ACES.cginc" />
@@ -820,6 +823,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="FFmpegOut.Editor.csproj">
+      <Project>{A3F659AC-536C-3B39-BEB6-7331262A1EA7}</Project>
+      <Name>FFmpegOut.Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Recorder.Editor.csproj">
       <Project>{C49DA1A2-61A0-A951-5AF4-ADF83BB220F9}</Project>
       <Name>Unity.Recorder.Editor</Name>
@@ -827,6 +834,10 @@
     <ProjectReference Include="Unity.Recorder.csproj">
       <Project>{BE540853-F4A9-EB18-7B27-C01A4601B32F}</Project>
       <Name>Unity.Recorder</Name>
+    </ProjectReference>
+    <ProjectReference Include="FFmpegOut.csproj">
+      <Project>{1CEEDD45-893D-C3BC-7961-50C9906A294E}</Project>
+      <Name>FFmpegOut</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Recorder.Samples.csproj">
       <Project>{3A9ED1DB-3F61-EB4F-063D-A9D629BC5538}</Project>

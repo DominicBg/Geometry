@@ -36,7 +36,7 @@ public class NDCube : MonoBehaviour {
 
     void Start()
     {
-//        StartGeneration();
+        StartGeneration();
     }
 
     [ContextMenu("Generate N Cube")]
