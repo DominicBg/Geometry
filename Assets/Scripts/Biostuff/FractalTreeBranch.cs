@@ -6,6 +6,7 @@ public class FractalTreeBranch : MonoBehaviour {
 
     public Vector3 position { get { return vertices[vertices.Count - 1]; } }
     public float length;
+    public float angle;
     public float totalAngle;
     public Vector3 direction;
     public List<Vector3> vertices;

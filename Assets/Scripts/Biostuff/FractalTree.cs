@@ -19,7 +19,7 @@ public class FractalTree : MonoBehaviour {
     [Header("Direction")]
     [SerializeField] Vector3 startDirection;
     [SerializeField] Vector3 stormDirection;
-    [SerializeField, Range(0, 1)] float directionWeigth;
+    [SerializeField, Range(-1, 1)] float directionWeigth;
 
     [Header("Color")]
     [SerializeField] Gradient gradientOverFork;
@@ -115,8 +115,7 @@ public class FractalTree : MonoBehaviour {
             //float angle = Mathf.Lerp((-halfAngle + offsetAngle), (halfAngle + offsetAngle), ratio);
 
             float halfAngle = child.totalAngle * 0.5f;
-            float angle = reader.GetAngle
-                (i, branch.childs.Length, currentDepth, -halfAngle + offsetAngle, halfAngle + offsetAngle);
+            float angle = reader.GetAngle(i, branch.childs.Length, currentDepth, -halfAngle, halfAngle);
 
             float length = reader.GetLenght(child.length);
             Vector3 direction;
@@ -131,7 +130,7 @@ public class FractalTree : MonoBehaviour {
             }
             child.direction = direction;
             child.SetColor(gradientOverFork.Evaluate(ratioDepth));
-
+            child.angle = angle;
             child.vertices.AddRange(reader.GetVertices(branch.position, direction));
             //child.vertices.Add(branch.position + direction);
             RecursiveUpdate(child, currentDepth + 1);

@@ -273,6 +273,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     duration: 2
+    autoStart: 0
     startKeyCode: 98
     OnStartEvent:
       m_PersistentCalls:
@@ -454,6 +455,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     duration: 2
+    autoStart: 0
     startKeyCode: 98
     OnStartEvent:
       m_PersistentCalls:
@@ -635,6 +637,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     duration: 2
+    autoStart: 0
     startKeyCode: 98
     OnStartEvent:
       m_PersistentCalls:
@@ -730,6 +733,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     duration: 0
+    autoStart: 0
     startKeyCode: 32
     OnStartEvent:
       m_PersistentCalls:
@@ -751,6 +755,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     duration: 0
+    autoStart: 0
     startKeyCode: 32
     OnStartEvent:
       m_PersistentCalls:
@@ -790,6 +795,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     duration: 5
+    autoStart: 0
     startKeyCode: 98
     OnStartEvent:
       m_PersistentCalls:

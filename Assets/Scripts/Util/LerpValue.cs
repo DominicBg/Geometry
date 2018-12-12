@@ -7,6 +7,7 @@ public abstract class LerpValue {
 
     public AnimationCurve curve;
     public float duration;
+    public bool autoStart;
     public KeyCode startKeyCode = KeyCode.Space;
 
     public UnityEvent OnStartEvent = new UnityEvent();
@@ -22,9 +23,10 @@ public abstract class LerpValue {
 
     protected float GetFloatValue(float min, float max, ValueType valueType)
     {
-        if (valueType == ValueType.Main && Input.GetKeyDown(startKeyCode))
+        if (valueType == ValueType.Main && (Input.GetKeyDown(startKeyCode) || autoStart))
         {
             StartAnimation();
+            autoStart = false;
         }
 
         if (state == State.Recording)

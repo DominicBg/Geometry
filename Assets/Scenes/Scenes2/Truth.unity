@@ -1505,7 +1505,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1788459928530086, guid: d7df0e864c45efa4fa4ac6d6228dc2d9, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7df0e864c45efa4fa4ac6d6228dc2d9, type: 2}
@@ -1845,10 +1845,10 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-    min: 0
-    max: 0
+    min: 1
+    max: 1
   zScalar: -1
-  inverseCurve: 0
+  inverseCurve: 1
 --- !u!120 &2066257209
 LineRenderer:
   m_ObjectHideFlags: 0
