@@ -1379,19 +1379,19 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1
+    value: 10
   threshold:
     overrideState: 0
     value: 1
   softKnee:
     overrideState: 1
-    value: 0.931
+    value: 1
   clamp:
     overrideState: 0
     value: 65472
   diffusion:
     overrideState: 1
-    value: 6.81
+    value: 3.23
   anamorphicRatio:
     overrideState: 0
     value: 0
@@ -1419,19 +1419,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   focusDistance:
     overrideState: 1
-    value: 4.14
+    value: 3
   aperture:
     overrideState: 1
-    value: 9.2
+    value: 10.4
   focalLength:
     overrideState: 1
-    value: 62
+    value: 55
   kernelSize:
     overrideState: 1
     value: 0
