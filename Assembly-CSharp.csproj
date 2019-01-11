@@ -145,6 +145,7 @@
     <Compile Include="Assets\Scripts\Animation\TwistPyramidController.cs" />
     <Compile Include="Assets\Scripts\Biostuff\FractalTree.cs" />
     <Compile Include="Assets\Scripts\Biostuff\FractalTreeBranch.cs" />
+    <Compile Include="Assets\Scripts\Biostuff\FractalTreeControler.cs" />
     <Compile Include="Assets\Scripts\Biostuff\FractalTreeController.cs" />
     <Compile Include="Assets\Scripts\Biostuff\FractalTreeReader.cs" />
     <Compile Include="Assets\Scripts\Biostuff\FractalTreeReaderLightning.cs" />
